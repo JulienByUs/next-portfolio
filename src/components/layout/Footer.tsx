@@ -60,7 +60,7 @@ export default function Footer() {
                   </p>
                   <li key=''>
                     <UnderlineLink
-                      href=''
+                      href='https://calendly.com/estanisj/20min'
                       className='text-sm leading-6 text-white font-bold'
                     >
                       Programmer un appel ici

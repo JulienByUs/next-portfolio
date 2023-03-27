@@ -211,7 +211,7 @@ export default function HomePage() {
       const targetsB = document.querySelectorAll('.child-blog');
       const targetB = document.querySelector('.child-blog') as HTMLElement;
 
-      let distanceB = targetB?.offsetWidth ?? 0; 
+      let distanceB = targetB?.offsetWidth ?? 0;
 
       if (directionB === 'right') {
         distanceB = -distanceB;
