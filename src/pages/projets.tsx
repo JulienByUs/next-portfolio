@@ -54,23 +54,9 @@ export default function Projets() {
           {x: 0, alpha: 1, duration: 1, delay: 0.5, ease: 'power1.out', stagger: 0.2}
       );
     }, 500);
-/*
-    const animation2 = gsap.fromTo(
-        '.first-class',
-        { opacity: 0, x: 50 },
-        { opacity: 1, x: 0, duration: 1 }
-    );
+  }, []);
 
-    // Use ScrollTrigger to create a trigger for each element
-    ScrollTrigger.create({
-      trigger: 'body',
-      animation: animation2,
-      start: 'bottom 80%',
-      end: '105% 100%',
-      toggleActions: 'play none none reverse'
-    });
-*/
-
+  useEffect(() => {
     let currentPosition = 0;
     const lent = document.querySelectorAll(".first-class").length - 1;
     let clickCounterNext = 0;
@@ -104,19 +90,20 @@ export default function Projets() {
     const leftButton = document.querySelector('.slide-to-left');
     const rightButton = document.querySelector('.slide-to-right');
 
-    leftButton?.addEventListener('click', () => {
+    leftButton.addEventListener('click', () => {
       if (clickCounterNext < lent) {
         animateElements('left');
       }
     });
 
-    rightButton?.addEventListener('click', () => {
+    rightButton.addEventListener('click', () => {
       if (clickCounterNext > 0) {
         animateElements('right');
       }
     });
+  }, [projects]);
 
-  }, []);
+
 
 
   return (

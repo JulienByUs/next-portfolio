@@ -39,12 +39,44 @@ export default function SingleProjet() {
     role: string;
     closeDescription: string;
     overviewUrl: string;
-    thumbnail: string;
   }
 
   const [project, setProject] = useState<Project | null>(null);
   const router = useRouter();
   const { id } = router.query;
+
+  useEffect(() => {
+    if (!id) return;
+
+    fetch(`https://julien-api.byus.dev/api/projects/${id}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Project not found: ${id}`);
+          }
+          return response.json();
+        })
+        .then((data) => setProject(data))
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error);
+          router.push('/404');
+        });
+  }, [id, router]);
+
+  useEffect(() => {
+    if (!id || !project || project.length === 0) return;
+    document.title = `Julien Estanis | ${project.title} | Paris`;
+  }, [id, project]);
+
+  const handlePreviousClick = () => {
+    const previousId = Number(id) - 1;
+    router.push(`/project/${previousId}`);
+  };
+
+  const handleNextClick = () => {
+    const nextId = Number(id) + 1;
+    router.push(`/project/${nextId}`);
+  };
 
   //GSAP
   useEffect(() => {
@@ -56,9 +88,6 @@ export default function SingleProjet() {
     const element5 = document.querySelector('.role');
     const element6 = document.querySelector('.ring-img-g');
     const element7 = document.querySelector('.project-role');
-
-    const element8 = document.querySelector('.overview');
-    const element9 = document.querySelector('.project-overview');
 
     const element10 = document.querySelector('.close-up');
     const element11 = document.querySelector('.project-text-close');
@@ -117,36 +146,6 @@ export default function SingleProjet() {
       end: '105% 100%'
     });
 
-    const animation3 = gsap.fromTo(
-        element8,
-        { opacity: 0, y: -50 },
-        { opacity: 1, y: 0, duration: 1 }
-    );
-
-    // Use ScrollTrigger to create a trigger for each element
-    ScrollTrigger.create({
-      trigger: element7,
-      animation: animation3,
-      start: 'bottom 80%',
-      end: '105% 100%'
-    });
-
-
-    const animation4 = gsap.fromTo(
-        element9,
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1 }
-    );
-
-    // Use ScrollTrigger to create a trigger for each element
-    ScrollTrigger.create({
-      trigger: element8,
-      animation: animation4,
-      start: '50% 80%',
-      end: '120% 100%'
-    });
-
-
     const animation5 = gsap.fromTo(
         element10,
         { opacity: 0, y: -50 },
@@ -155,7 +154,7 @@ export default function SingleProjet() {
 
     // Use ScrollTrigger to create a trigger for each element
     ScrollTrigger.create({
-      trigger: element9,
+      trigger: element7,
       animation: animation5,
       start: 'bottom 80%',
       end: '105% 100%'
@@ -191,50 +190,15 @@ export default function SingleProjet() {
     });
 
 
-  }, []);
-
-
-
-  useEffect(() => {
-    if (!id) return;
-
-    fetch(`https://julien-api.byus.dev/api/projects/${id}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Project not found: ${id}`);
-        }
-        return response.json();
-      })
-      .then((data) => setProject(data))
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error);
-        router.push('/404');
-      });
-  }, [id, router]);
-
-  useEffect(() => {
-    if (!id || !project || project.length === 0) return;
-    document.title = `Julien Estanis | ${project.title} | Paris`;
-  }, [id, project]);
-
-  const handlePreviousClick = () => {
-    const previousId = Number(id) - 1;
-    router.push(`/project/${previousId}`);
-  };
-
-  const handleNextClick = () => {
-    const nextId = Number(id) + 1;
-    router.push(`/project/${nextId}`);
-  };
+  }, [project]);
 
   if (!project) {
     return (
-      <main className='isolate'>
-        <div className='relative'>
-          <Spinner />
-        </div>
-      </main>
+        <main className='isolate'>
+          <div className='relative'>
+            <Spinner />
+          </div>
+        </main>
     );
   }
 
@@ -242,9 +206,7 @@ export default function SingleProjet() {
     <Layout>
       <Seo
         templateTitle='Projets'
-        description="
-                Découvrez mes réalisations dans le domaine du développement web et du design graphique. Sur cette page, vous pourrez explorer une variété de projets qui démontrent mon savoir-faire et mes compétences. J'ai travaillé avec divers clients pour créer des sites web, des applications et des designs graphiques personnalisés. Consultez ma page de projets pour en savoir plus sur mon travail et mes compétences.
-                "
+        description={project.description}
       />
 
       <main className='isolate'>
@@ -254,8 +216,8 @@ export default function SingleProjet() {
               <div className='about-project layout px-6 lg:px-8'>
                 {project && (
                   <div>
-                    <div className='grid grid-cols-1 items-center gap-x-8 gap-y-16 lg:grid-cols-2'>
-                      <div>
+                    <div className='flex flex-col md:flex-row justify-between items-center'>
+                      <div className="w-full md:w-[50%]">
                         <h1 className='text-4xl font-bold leading-10 tracking-tight text-[#0E0B3D] sm:text-3xl'>
                           {project.catchphrase}
                         </h1>
@@ -264,11 +226,11 @@ export default function SingleProjet() {
                         </p>
                       </div>
                       <Image
-                        className='col-span-2 w-full object-contain lg:col-span-1'
+                        className='img-project-logo col-span-2 w-[150px] object-contain lg:col-span-1'
                         src={`https://julien-api.byus.dev/static/projects/${project.id}/${project.logoUrl}`}
                         alt='logo'
-                        width={316}
-                        height={96}
+                        width={150}
+                        height={150}
                       />
                     </div>
                   </div>
@@ -295,20 +257,8 @@ export default function SingleProjet() {
                   </div>
 
                   <div className='my-20 md:my-44'>
-                    <h3 className='overview mb-10 text-3xl font-bold tracking-tight text-[#0E0B3D] sm:text-4xl'>
-                      Overview
-                    </h3>
-                    <Image
-                        src={`https://julien-api.byus.dev/static/projects/${project.id}/${project.thumbnail}`}
-                      alt='App screenshot'
-                      width={2432}
-                      height={600}
-                      className='project-overview ring-1 ring-gray-900/10'
-                    />
-                  </div>
-                  <div className='my-20 md:my-44'>
                     <h3 className='close-up mb-5 text-3xl font-bold tracking-tight text-[#0E0B3D] sm:text-4xl'>
-                      Close up look
+                      Détails
                     </h3>
                     <p className='project-text-close text-2sm my-5 font-light tracking-tight text-[#212121] leading-6 md:text-sm'>
                       {project.closeDescription}

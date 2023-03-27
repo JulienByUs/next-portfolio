@@ -38,6 +38,21 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function HomePage() {
 
+  interface Project {
+    id: number;
+    title: string;
+    image: string;
+    description: string;
+    thumbnail: string;
+  }
+
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    fetch('https://julien-api.byus.dev/api/projects')
+        .then((response) => response.json())
+        .then((data) => setProjects(data));
+  }, []);
 
   useEffect(() => {
 
@@ -155,7 +170,10 @@ export default function HomePage() {
           {y: 100, alpha: 0},
           {y: 0, alpha: 1, duration: 1, delay: 3.5, ease: 'power1.out', stagger: 0.2}
       );
+  }, []);
 
+      //Listing
+  useEffect(() => {
     let currentPosition = 0;
     const lent = document.querySelectorAll(".child-project").length - 1;
     let clickCounterNext = 0;
@@ -189,13 +207,13 @@ export default function HomePage() {
     const leftButton = document.querySelector('.slide-to-left');
     const rightButton = document.querySelector('.slide-to-right');
 
-    leftButton?.addEventListener('click', () => {
+    leftButton.addEventListener('click', () => {
       if (clickCounterNext < lent) {
         animateElements('left');
       }
     });
 
-    rightButton?.addEventListener('click', () => {
+    rightButton.addEventListener('click', () => {
       if (clickCounterNext > 0) {
         animateElements('right');
       }
@@ -236,38 +254,20 @@ export default function HomePage() {
     const leftButtonB = document.querySelector('.slide-to-left-blog');
     const rightButtonB = document.querySelector('.slide-to-right-blog');
 
-    leftButtonB?.addEventListener('click', () => {
+    leftButtonB.addEventListener('click', () => {
       if (clickCounterNextB < lentBlog) {
         animateElementsIndex('left');
       }
     });
 
-    rightButtonB?.addEventListener('click', () => {
+    rightButtonB.addEventListener('click', () => {
       if (clickCounterNextB > 0) {
         animateElementsIndex('right');
       }
     });
 
-  }, []); // add empty dependency array here
+  }, [projects]); // add empty dependency array here
 
-
-
-
-  interface Project {
-    id: number;
-    title: string;
-    image: string;
-    description: string;
-    thumbnail: string;
-  }
-
-  const [projects, setProjects] = useState<Project[]>([]);
-
-  useEffect(() => {
-    fetch('https://julien-api.byus.dev/api/projects')
-      .then((response) => response.json())
-      .then((data) => setProjects(data));
-  }, []);
 
   return (
     <Layout>
@@ -297,8 +297,7 @@ export default function HomePage() {
                   <p className='description-main text-md mt-6 overflow-hidden leading-6 text-gray-600'>
                     <div className='pb-2'>
                       <div>
-                        Je suis un webdesigner/développeur et directeur
-                        artistique basé à Paris. Grâce à mon expertise solide,
+                        Je suis un webdesigner/développeur et basé à Paris. Grâce à mon expertise solide,
                         j'ai aidé diverses entreprises à se démarquer avec des
                         sites web créatifs et performants.
                       </div>
