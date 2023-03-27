@@ -8,11 +8,14 @@ const nextConfig = {
   swcMinify: true,
 
   // Uncoment to add domain whitelist
-  // images: {
-  //   domains: [
-  //     'res.cloudinary.com',
-  //   ],
-  // },
+    images: {
+    domains: [
+      'res.cloudinary.com',
+      'julien-api.byus.dev',
+      'julienestanis.fr',
+      'localhost',
+     ],
+  },
 
   // SVGR
   webpack(config) {

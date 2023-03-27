@@ -3,19 +3,19 @@ import { useRouter } from 'next/router';
 
 // !STARTERCONF Change these default meta
 const defaultMeta = {
-  title: 'Next.js + Tailwind CSS + TypeScript Starter',
-  siteName: 'Next.js + Tailwind CSS + TypeScript Starter',
+  title: 'Julien Estanis | Designer & Développeur | Paris',
+  siteName: 'Julien Estanis | Designer & Développeur | Paris',
   description:
-    'A starter for Next.js, Tailwind CSS, and TypeScript with Absolute Import, Seo, Link component, pre-configured with Husky',
+    'Bienvenue dans le portfolio de Julien Estanis, web designer et développeur basé à Paris. Consultez des exemples de mon travail et contactez-moi pour votre prochain projet.',
   /** Without additional '/' on the end, e.g. https://theodorusclarence.com */
-  url: 'https://tsnext-tw.thcl.dev',
+  url: 'https://julienestanis.fr',
   type: 'website',
   robots: 'follow, index',
   /**
    * No need to be filled, will be populated with openGraph function
    * If you wish to use a normal image, just specify the path below
    */
-  image: 'https://tsnext-tw.thcl.dev/images/large-og.png',
+  image: '../favicon/large-og.png',
 };
 
 type SeoProps = {
@@ -75,7 +75,7 @@ export default function Seo(props: SeoProps) {
           <meta
             name='author'
             property='article:author'
-            content='Theodorus Clarence'
+            content='Julien Estanis'
           />
         </>
       )}

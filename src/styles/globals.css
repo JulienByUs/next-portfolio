@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -70,6 +72,10 @@
     @apply font-primary text-base font-bold md:text-lg;
   }
 
+  body {
+    overflow-x: hidden;
+  }
+
   body,
   .p {
     @apply font-primary text-sm md:text-base;
@@ -115,4 +121,248 @@
   .animated-underline:focus-visible {
     background-size: 0 2px, 100% 2px;
   }
+}
+
+body::-webkit-scrollbar {
+  width: 10px; /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: white; /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(23, 21, 49); /* color of the scroll thumb */
+}
+
+.first-class:first-child{
+  padding-left: 0 !important;
+}
+
+.first-class{
+  transform: translate(0px, 0px);
+}
+
+.css-1ss3utg[aria-selected=true]{
+  width: 25% !important;
+  height: 40px !important;
+  border-radius: 20px !important;
+  background-color: rgb(247, 249, 252) !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.css-a5mhaz{
+  text-align: center;
+  width: 100%;
+  padding: 30px !important;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.css-8atqhb{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  background-color: rgb(23, 21, 49);
+  color: white;
+  border-radius: 24px;
+}
+
+.css-1uw5bnh{
+  justify-content: center !important;
+  background-color: rgb(23, 21, 49);
+  border-radius: 24px;
+  padding: 4px;
+  gap: 5px;
+}
+
+.css-1ss3utg{
+  width: 25% !important;
+  height: 40px !important;
+  font-size: 12px !important;
+  color: white !important;
+}
+
+.css-1ss3utg[aria-selected=true], .css-1ss3utg[data-selected]{
+  color: #0E0B3D !important;
+  font-size: 12px !important;
+}
+
+.chakra-tabs {
+  margin-top: 1.5rem;
+}
+
+@font-face {
+  font-family: 'Faktum-Light';
+  src: url('/fonts/Faktum-Light.otf');
+}
+
+@font-face {
+  font-family: 'Faktum-SemiBold';
+  src: url('/fonts/Faktum-SemiBold.otf');
+}
+
+p,
+span,
+a,
+.description-main,
+body,
+div,
+button{
+  font-family: 'Inter', sans-serif !important;
+  font-size: 18px;
+  line-height: 36px;
+  letter-spacing: -0.01em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h1 div{
+  font-family: 'Faktum-SemiBold', sans-serif !important;
+  letter-spacing: -0.04em;
+  line-height: 56px;
+}
+
+header a{
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+}
+
+.catchphrase .pb-2 div{
+  transform: translate(0px, 80px);
+}
+
+.description-main .pb-2 div{
+  transform: translate(0px, 100%);
+}
+
+.title-main .pb-2{
+  transform: translate(0px, 105%);
+}
+
+
+.sub-lighted:after {
+  content: "";
+  position: relative;
+  left: 90%;
+  width: 195px;
+  height: 30px;
+  background: #C6F6D5;
+  z-index: -1;
+  transform: translate(-55%, -47%);
+  top: 47%;
+}
+
+.sub-lighted-bis:after {
+  content: "";
+  position: relative;
+  left: 60%;
+  width: 240px;
+  height: 30px;
+  background: #C6F6D5;
+  z-index: -1;
+  transform: translate(-55%, -47%);
+  top: 47%;
+}
+
+
+.title-main div,
+.title-main div span{
+  font-size: 64px !important;
+  line-height: 72px;
+}
+
+.css-a5mhaz p{
+  font-size: 14px !important;
+  line-height: 32px;
+  padding: 10px;
+}
+
+.css-clyu3q{
+  font-family: 'Caveat', cursive !important;
+}
+
+@media (max-width: 860px) {
+  .css-clyu3q,
+  .css-6ifbzo{
+    display: none !important;
+  }
+  
+  .title-main div,
+  .title-main div span{
+    font-size: 34px !important;
+    line-height: 45px;
+  }
+  
+  .css-a5mhaz p{
+    font-size: 12px !important;
+    line-height: 24px;
+  }
+  
+  .css-a5mhaz{
+    flex-direction: column;
+  }
+  
+  /*
+  .sub-lighted::after {
+    height: 10%;
+    top: 65%;
+    transform: translate(-50%, -65%);
+    left: 45%;
+    width: 70%;
+  }
+  
+  .sub-lighted-bis::after {
+    height: 10%;
+    top: 55%;
+    width: 70%;
+    left: 50%;
+  }
+   */
+  
+}
+
+nav a {
+  color: #0E0B3D;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+span,
+a,
+.description-main,
+body,
+div,
+button{
+  font-feature-settings: 'cv11' on,'cv10' on,'cv09' on,'cv08' on,'cv07' on,'cv06' on,'cv05' on,'cv04' on,'cv03' on,'cv01' on,'cv02' on,'ss04' on,'ss09' on,'ss08' on,'salt' on,'ss01' on,'ss02' on,'ss05' on;
+}
+
+svg {
+  width: 155px;
+  height: 20px;
+}
+
+text {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  fill: #fff;
+}
+
+.projects-navigation svg:hover{
+  cursor: pointer;
+}
+
+footer{
+  background-color: rgb(23, 21, 49);
 }
