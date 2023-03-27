@@ -75,11 +75,11 @@ export default function Projets() {
     const lent = document.querySelectorAll(".first-class").length - 1;
     let clickCounterNext = 0;
 
-    function animateElements(direction) {
+    function animateElements(direction: string) {
       const targets = document.querySelectorAll('.first-class');
-      const target = document.querySelector('.first-class');
+      const target = document.querySelector('.first-class') as HTMLElement;
 
-      let distance = target.offsetWidth;
+      let distance = target?.offsetWidth ?? 0;
 
       if (direction === 'right') {
         distance = -distance;
@@ -104,15 +104,13 @@ export default function Projets() {
     const leftButton = document.querySelector('.slide-to-left');
     const rightButton = document.querySelector('.slide-to-right');
 
-    leftButton.addEventListener('click', () => {
-      console.log('left');
+    leftButton?.addEventListener('click', () => {
       if (clickCounterNext < lent) {
         animateElements('left');
       }
     });
 
-    rightButton.addEventListener('click', () => {
-      console.log('right');
+    rightButton?.addEventListener('click', () => {
       if (clickCounterNext > 0) {
         animateElements('right');
       }

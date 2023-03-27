@@ -3,13 +3,6 @@ import * as React from 'react';
 import { useEffect} from 'react';
 
 import UnstyledLink from '@/components/links/UnstyledLink';
-
-const links = [
-  { href: '/projets', label: 'Projets' },
-  { href: 'https://www.blog.julienestanis.fr/', label: 'Blog' },
-  { href: '/contact', label: 'Contact' },
-];
-
 import Fav from '~/svg/Fav.svg';
 
 export default function Header() {

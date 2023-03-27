@@ -37,6 +37,8 @@ gsap.registerPlugin(ScrollTrigger);
 // to customize the default configuration.
 
 export default function HomePage() {
+
+
   useEffect(() => {
 
     const element1 = document.querySelector('.catchphrase .pb-2 div');
@@ -158,11 +160,11 @@ export default function HomePage() {
     const lent = document.querySelectorAll(".child-project").length - 1;
     let clickCounterNext = 0;
 
-    function animateElements(direction) {
+    function animateElements(direction: string) {
       const targets = document.querySelectorAll('.child-project');
-      const target = document.querySelector('.child-project');
+      const target = document.querySelector('.child-project') as HTMLElement;
 
-      let distance = target.offsetWidth;
+      let distance = target?.offsetWidth ?? 0;
 
       if (direction === 'right') {
         distance = -distance;
@@ -187,15 +189,13 @@ export default function HomePage() {
     const leftButton = document.querySelector('.slide-to-left');
     const rightButton = document.querySelector('.slide-to-right');
 
-    leftButton.addEventListener('click', () => {
-      console.log('left');
+    leftButton?.addEventListener('click', () => {
       if (clickCounterNext < lent) {
         animateElements('left');
       }
     });
 
-    rightButton.addEventListener('click', () => {
-      console.log('right');
+    rightButton?.addEventListener('click', () => {
       if (clickCounterNext > 0) {
         animateElements('right');
       }
@@ -207,11 +207,11 @@ export default function HomePage() {
     const lentBlog = document.querySelectorAll(".child-blog").length - 1;
     let clickCounterNextB = 0;
 
-    function animateElementsIndex(directionB) {
+    function animateElementsIndex(directionB: string) {
       const targetsB = document.querySelectorAll('.child-blog');
-      const targetB = document.querySelector('.child-blog');
+      const targetB = document.querySelector('.child-blog') as HTMLElement;
 
-      let distanceB = targetB.offsetWidth;
+      let distanceB = targetB?.offsetWidth ?? 0; 
 
       if (directionB === 'right') {
         distanceB = -distanceB;
@@ -236,15 +236,13 @@ export default function HomePage() {
     const leftButtonB = document.querySelector('.slide-to-left-blog');
     const rightButtonB = document.querySelector('.slide-to-right-blog');
 
-    leftButtonB.addEventListener('click', () => {
-      console.log('left');
+    leftButtonB?.addEventListener('click', () => {
       if (clickCounterNextB < lentBlog) {
         animateElementsIndex('left');
       }
     });
 
-    rightButtonB.addEventListener('click', () => {
-      console.log('right');
+    rightButtonB?.addEventListener('click', () => {
       if (clickCounterNextB > 0) {
         animateElementsIndex('right');
       }
