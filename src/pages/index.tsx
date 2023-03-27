@@ -1,9 +1,3 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import * as React from 'react';
-import { useEffect, useState } from 'react';
-import {gsap} from "gsap";
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Tabs } from "@chakra-ui/react";
 import { TabList } from "@chakra-ui/react";
@@ -12,16 +6,21 @@ import { TabPanel } from "@chakra-ui/react";
 import { Tab } from "@chakra-ui/react";
 import {
   Box,
-  Text,
-  Icon,
-  useColorModeValue,
   createIcon,
+  Icon,
+  Text,
+  useColorModeValue,
 } from '@chakra-ui/react';
-
+import {ArrowLongLeftIcon, ArrowLongRightIcon} from "@heroicons/react/20/solid";
+import {gsap} from "gsap";
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import Image from 'next/image';
+import Link from 'next/link';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
-import {ArrowLongLeftIcon, ArrowLongRightIcon} from "@heroicons/react/20/solid";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -204,11 +203,11 @@ export default function HomePage() {
 
     // Blog
 
-    let currentPositionBlog = 0;
+    const currentPositionBlog = 0;
     const lentBlog = document.querySelectorAll(".child-blog").length - 1;
     let clickCounterNextB = 0;
 
-    function animateElements(directionB) {
+    function animateElementsIndex(directionB) {
       const targetsB = document.querySelectorAll('.child-blog');
       const targetB = document.querySelector('.child-blog');
 
@@ -240,14 +239,14 @@ export default function HomePage() {
     leftButtonB.addEventListener('click', () => {
       console.log('left');
       if (clickCounterNextB < lentBlog) {
-        animateElements('left');
+        animateElementsIndex('left');
       }
     });
 
     rightButtonB.addEventListener('click', () => {
       console.log('right');
       if (clickCounterNextB > 0) {
-        animateElements('right');
+        animateElementsIndex('right');
       }
     });
 
@@ -315,17 +314,17 @@ export default function HomePage() {
                             as={Arrow}
                             color={useColorModeValue('gray.800', 'gray.300')}
                             w={71}
-                            position={'absolute'}
+                            position="absolute"
                             right={-71}
-                            top={'10px'}
+                            top="10px"
                         />
                         <Text
-                            fontSize={'lg'}
-                            fontFamily={'Caveat'}
-                            position={'absolute'}
-                            right={'-125px'}
-                            top={'-15px'}
-                            transform={'rotate(40deg)'}>
+                            fontSize="lg"
+                            fontFamily="Caveat"
+                            position="absolute"
+                            right="-125px"
+                            top="-15px"
+                            transform="rotate(40deg)">
                           Disponible 🤙
                         </Text>
                       </Box>

@@ -1,12 +1,13 @@
-import * as React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import {ArrowLongLeftIcon, ArrowLongRightIcon} from "@heroicons/react/20/solid";
 import {gsap} from "gsap";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import Image from 'next/image';
+import Link from 'next/link';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
-import {ArrowLongLeftIcon, ArrowLongRightIcon} from "@heroicons/react/20/solid";
 
 gsap.registerPlugin(ScrollTrigger);
 

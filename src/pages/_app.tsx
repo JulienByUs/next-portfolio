@@ -1,11 +1,7 @@
 import { AppProps } from 'next/app';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { gsap } from 'gsap';
-
+import '@/scripts/global.js';
 
 import '@/styles/globals.css';
-import '@/scripts/global.js';
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
 

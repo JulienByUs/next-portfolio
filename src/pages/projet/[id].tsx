@@ -1,14 +1,14 @@
+import { Spinner } from '@chakra-ui/react';
 import {
   ArrowLongLeftIcon,
   ArrowLongRightIcon,
 } from '@heroicons/react/20/solid';
+import {gsap} from "gsap";
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { Spinner } from '@chakra-ui/react';
-import {gsap} from "gsap";
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
