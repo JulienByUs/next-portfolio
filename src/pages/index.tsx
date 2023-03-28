@@ -223,17 +223,21 @@ export default function HomePage() {
     const leftButton = document.querySelector('.slide-to-left');
     const rightButton = document.querySelector('.slide-to-right');
 
-    leftButton.addEventListener('click', () => {
-      if (clickCounterNext < lent) {
-        animateElements('left');
-      }
-    });
+    if (leftButton !== null) {
+      leftButton.addEventListener('click', () => {
+        if (clickCounterNext < lent) {
+          animateElements('left');
+        }
+      });
+    }
 
-    rightButton.addEventListener('click', () => {
-      if (clickCounterNext > 0) {
-        animateElements('right');
-      }
-    });
+    if (rightButton !== null) {
+      rightButton.addEventListener('click', () => {
+        if (clickCounterNext > 0) {
+          animateElements('right');
+        }
+      });
+    }
 
     // Blog
 
@@ -270,17 +274,21 @@ export default function HomePage() {
     const leftButtonB = document.querySelector('.slide-to-left-blog');
     const rightButtonB = document.querySelector('.slide-to-right-blog');
 
-    leftButtonB.addEventListener('click', () => {
-      if (clickCounterNextB < lentBlog) {
-        animateElementsIndex('left');
-      }
-    });
+    if (leftButtonB !== null) {
+      leftButtonB.addEventListener('click', () => {
+        if (clickCounterNextB < lentBlog) {
+          animateElementsIndex('left');
+        }
+      });
+    }
 
-    rightButtonB.addEventListener('click', () => {
-      if (clickCounterNextB > 0) {
-        animateElementsIndex('right');
-      }
-    });
+    if (rightButtonB !== null) {
+      rightButtonB.addEventListener('click', () => {
+        if (clickCounterNextB > 0) {
+          animateElementsIndex('right');
+        }
+      });
+    }
 
   }, [projects]); // add empty dependency array here
 

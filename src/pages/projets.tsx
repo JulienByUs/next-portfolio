@@ -93,17 +93,22 @@ export default function Projets() {
     const leftButton = document.querySelector('.slide-to-left');
     const rightButton = document.querySelector('.slide-to-right');
 
-    leftButton.addEventListener('click', () => {
-      if (clickCounterNext < lent) {
-        animateElements('left');
-      }
-    });
+    if (leftButton !== null) {
+      leftButton.addEventListener('click', () => {
+        if (clickCounterNext < lent) {
+          animateElements('left');
+        }
+      });
+    }
 
-    rightButton.addEventListener('click', () => {
-      if (clickCounterNext > 0) {
-        animateElements('right');
-      }
-    });
+    if (rightButton !== null) {
+      rightButton.addEventListener('click', () => {
+        if (clickCounterNext > 0) {
+          animateElements('right');
+        }
+      });
+    }
+
   }, [projects]);
 
 
