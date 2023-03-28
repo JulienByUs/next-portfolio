@@ -65,6 +65,9 @@ export default function Projets() {
       const targets = document.querySelectorAll('.first-class');
       const target = document.querySelector('.first-class') as HTMLElement;
 
+      const marginLeft = parseFloat(getComputedStyle(target).paddingLeft) || 0;
+      targets.forEach(t => (t as HTMLElement).style.paddingLeft = `-${marginLeft}0px`);
+
       let distance = target?.offsetWidth ?? 0;
 
       if (direction === 'right') {

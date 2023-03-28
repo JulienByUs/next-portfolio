@@ -288,6 +288,10 @@ header a{
   font-family: 'Caveat', cursive !important;
 }
 
+.no-article{
+  width: 100vw;
+}
+
 @media (max-width: 860px) {
   .css-clyu3q,
   .css-6ifbzo{

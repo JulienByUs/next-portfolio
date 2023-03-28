@@ -46,12 +46,28 @@ export default function HomePage() {
     thumbnail: string;
   }
 
+  interface Blog {
+    id: number;
+    title: string;
+    image: string;
+    description: string;
+
+  }
+
   const [projects, setProjects] = useState<Project[]>([]);
+
+  const [blogs, setBlogs] = useState<Blog[]>([]);
 
   useEffect(() => {
     fetch('https://julien-api.byus.dev/api/projects')
         .then((response) => response.json())
         .then((data) => setProjects(data));
+  }, []);
+
+  useEffect(() => {
+    fetch('https://julien-api.byus.dev/api/blogs')
+        .then((response) => response.json())
+        .then((data) => setBlogs(data));
   }, []);
 
   useEffect(() => {
@@ -297,7 +313,7 @@ export default function HomePage() {
                   <p className='description-main text-md mt-6 overflow-hidden leading-6 text-gray-600'>
                     <div className='pb-2'>
                       <div>
-                        Je suis un webdesigner/développeur et basé à Paris. Grâce à mon expertise solide,
+                        Je suis un webdesigner/développeur basé à Paris. Grâce à mon expertise solide,
                         j'ai aidé diverses entreprises à se démarquer avec des
                         sites web créatifs et performants.
                       </div>
@@ -464,36 +480,33 @@ export default function HomePage() {
 
           {/* Blog section */}
           <div className='articlez parent sm:my-13 lg:my-13 relative mt-3 mb-52 inline-flex'>
-            {projects.slice(0, 3).map((project) => (
-              <div
-                key={project.id}
-                className='child child-blog z-20 inline-table w-screen px-6 text-[#212121]'
-              >
-                <div className='mx-auto max-w-2xl lg:max-w-4xl'>
-                  <figure className='mt-6 md:mt-16'>
-                    <p className='mb-2 mb-0 text-xl font-bold tracking-tight text-[#212121] md:text-3xl'>
-                      {project.title}
-                    </p>
-                    <div className='grid grid-flow-col grid-rows-1 gap-1'>
-                      <figcaption className='mb-4 flex gap-x-2 text-xs leading-4 text-gray-500 md:text-sm md:leading-6'>
-                        {project.description}
-                      </figcaption>
-                    </div>
-                    <Link title={project.title} href={`/project/${project.id}`}>
-                      <Image
-                          className='aspect-video rounded-xl bg-gray-50 object-cover'
-                          src={`https://julien-api.byus.dev/static/projects/${project.id}/${project.thumbnail}`}
-                          alt=''
-                          width={2432}
-                          height={600}
-                          blurDataURL="data:..."
-                          placeholder="blur"
-                      />
-                    </Link>
-                  </figure>
+            {blogs.length === 0 ? (
+                <div className='mx-auto w-screen lg:max-w-4xl text-center'>
+                  <figcaption className='mb-4 no-article text-xs leading-4 text-gray-500 md:text-sm md:leading-6'>
+                    Aucun article de blog publié pour le moment.
+                  </figcaption>
                 </div>
-              </div>
-            ))}
+            ) : (
+                blogs.slice(0, 3).map((blog) => (
+                    <div
+                        key={blog.id}
+                        className='child child-blog z-20 inline-table w-screen px-6 text-[#212121]'
+                    >
+                      <div className='mx-auto max-w-2xl lg:max-w-4xl'>
+                        <figure className='mt-6 md:mt-16'>
+                          <p className='mb-2 mb-0 text-xl font-bold tracking-tight text-[#212121] md:text-3xl'>
+                            {blog.title}
+                          </p>
+                          <div className='grid grid-flow-col grid-rows-1 gap-1'>
+                            <figcaption className='mb-4 flex gap-x-2 text-xs leading-4 text-gray-500 md:text-sm md:leading-6'>
+                              {blog.description}
+                            </figcaption>
+                          </div>
+                        </figure>
+                      </div>
+                    </div>
+                ))
+            )}
           </div>
         </section>
       </main>

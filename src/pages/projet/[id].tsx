@@ -88,7 +88,6 @@ export default function SingleProjet() {
     const element4 = document.querySelector('.hero-img');
 
     const element5 = document.querySelector('.role');
-    const element6 = document.querySelector('.ring-img-g');
     const element7 = document.querySelector('.project-role');
 
     const element10 = document.querySelector('.close-up');
@@ -116,15 +115,17 @@ export default function SingleProjet() {
         {x: 0, alpha: 1, duration: 1, delay: 2}
     );
 
+
     gsap.fromTo(
         element3,
         {x: 50, alpha: 0},
         {x: 0, alpha: 1, duration: 1, delay: 3}
     );
 
+
     gsap.fromTo(
         element4,
-        {y: 50, alpha: 0},
+        {y: 100, alpha: 0},
         {y: 0, alpha: 1, duration: 1, delay: 4}
     );
 
@@ -242,7 +243,7 @@ export default function SingleProjet() {
                         </UnderlineLink>
                       </div>
                       <Image
-                        className='img-project-logo col-span-2 w-[150px] object-contain lg:col-span-1 hero-img'
+                        className='img-project-logo col-span-2 w-[150px] object-contain lg:col-span-1'
                         src={`https://julien-api.byus.dev/static/projects/${project.id}/${project.logoUrl}`}
                         alt='logo'
                         width={150}
@@ -257,7 +258,7 @@ export default function SingleProjet() {
                 alt='App screenshot'
                 width={2432}
                 height={600}
-                className='my-20 md:my-44'
+                className='my-20 md:my-44 hero-img'
               />
               <div className='layout px-6 lg:px-8'>
                 <div className='text-left'>
