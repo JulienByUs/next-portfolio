@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
+import UnderlineLink from "@/components/links/UnderlineLink";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,6 +40,7 @@ export default function SingleProjet() {
     role: string;
     closeDescription: string;
     overviewUrl: string;
+    url: string;
   }
 
   const [project, setProject] = useState<Project | null>(null);
@@ -70,20 +72,20 @@ export default function SingleProjet() {
 
   const handlePreviousClick = () => {
     const previousId = Number(id) - 1;
-    router.push(`/project/${previousId}`);
+    router.push(`/projet/${previousId}`);
   };
 
   const handleNextClick = () => {
     const nextId = Number(id) + 1;
-    router.push(`/project/${nextId}`);
+    router.push(`/projet/${nextId}`);
   };
 
   //GSAP
   useEffect(() => {
     const element1 = document.querySelector('.about-project .text-4xl');
     const element2 = document.querySelector('.about-project .text-2sm');
-    const element3 = document.querySelector('.about-project img');
-    const element4 = document.querySelector('.ring-img-g');
+    const element3 = document.querySelector('.img-project-logo');
+    const element4 = document.querySelector('.hero-img');
 
     const element5 = document.querySelector('.role');
     const element6 = document.querySelector('.ring-img-g');
@@ -92,6 +94,8 @@ export default function SingleProjet() {
     const element10 = document.querySelector('.close-up');
     const element11 = document.querySelector('.project-text-close');
     const element12 = document.querySelector('.project-img-close');
+
+    const element13 = document.querySelector('.about-project .visit-link');
 
 
     gsap.fromTo(
@@ -107,15 +111,21 @@ export default function SingleProjet() {
     );
 
     gsap.fromTo(
+        element13,
+        {x: -50, alpha: 0},
+        {x: 0, alpha: 1, duration: 1, delay: 2}
+    );
+
+    gsap.fromTo(
         element3,
         {x: 50, alpha: 0},
-        {x: 0, alpha: 1, duration: 1, delay: 2}
+        {x: 0, alpha: 1, duration: 1, delay: 3}
     );
 
     gsap.fromTo(
         element4,
         {y: 50, alpha: 0},
-        {y: 0, alpha: 1, duration: 1, delay: 3}
+        {y: 0, alpha: 1, duration: 1, delay: 4}
     );
 
     const animation = gsap.fromTo(
@@ -126,10 +136,10 @@ export default function SingleProjet() {
 
     // Use ScrollTrigger to create a trigger for each element
     ScrollTrigger.create({
-      trigger: element6,
+      trigger: element4,
       animation: animation,
-      start: 'bottom 80%',
-      end: '105% 100%'
+      start: 'top top',
+      end: '100% 100%'
     });
 
     const animation2 = gsap.fromTo(
@@ -140,10 +150,10 @@ export default function SingleProjet() {
 
     // Use ScrollTrigger to create a trigger for each element
     ScrollTrigger.create({
-      trigger: element6,
+      trigger: element4,
       animation: animation2,
-      start: 'bottom 80%',
-      end: '105% 100%'
+      start: 'top top',
+      end: '100% 100%',
     });
 
     const animation5 = gsap.fromTo(
@@ -224,9 +234,15 @@ export default function SingleProjet() {
                         <p className='leading-6 text-2sm mt-5 font-light tracking-tight text-[#212121] leading-6 md:text-sm'>
                           {project.description}
                         </p>
+                        <UnderlineLink
+                            href={project.url}
+                            className='text-sm leading-6 text-[#0E0B3D] font-bold visit-link'
+                        >
+                          Visiter le site
+                        </UnderlineLink>
                       </div>
                       <Image
-                        className='img-project-logo col-span-2 w-[150px] object-contain lg:col-span-1'
+                        className='img-project-logo col-span-2 w-[150px] object-contain lg:col-span-1 hero-img'
                         src={`https://julien-api.byus.dev/static/projects/${project.id}/${project.logoUrl}`}
                         alt='logo'
                         width={150}
@@ -241,7 +257,7 @@ export default function SingleProjet() {
                 alt='App screenshot'
                 width={2432}
                 height={600}
-                className='ring-img-g my-20 ring-1 ring-gray-900/10 md:my-44'
+                className='my-20 md:my-44'
               />
               <div className='layout px-6 lg:px-8'>
                 <div className='text-left'>
@@ -284,7 +300,7 @@ export default function SingleProjet() {
                             className='mr-3 h-5 w-5 hover:text-[#1463FF]'
                             aria-hidden='true'
                           />
-                          Previous
+                          Précédent
                         </button>
                       </div>
 
@@ -293,7 +309,7 @@ export default function SingleProjet() {
                           onClick={handleNextClick}
                           className='inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium text-gray-500 hover:border-[#1463FF] hover:text-[#00AB6D]'
                         >
-                          Next
+                          Suivant
                           <ArrowLongRightIcon
                             className='ml-3 h-5 w-5 hover:text-[#1463FF]'
                             aria-hidden='true'

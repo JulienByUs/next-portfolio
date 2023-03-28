@@ -10,7 +10,7 @@ const footerLinks = {
   items: [
     { name: 'Julien Estanis' },
     { name: 'estanisj@outlook.fr' },
-    { name: 'Based in Paris' },
+    { name: '06.29.82.80.93' },
     { name: companyName },
   ],
 };
