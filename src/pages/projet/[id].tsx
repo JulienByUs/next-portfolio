@@ -243,7 +243,7 @@ export default function SingleProjet() {
                         </UnderlineLink>
                       </div>
                       <Image
-                        className='img-project-logo col-span-2 w-[150px] object-contain lg:col-span-1'
+                        className='img-project-logo col-span-2 w-[150px] object-contain lg:col-span-1 mt-10 md:mt-0'
                         src={`https://julien-api.byus.dev/static/projects/${project.id}/${project.logoUrl}`}
                         alt='logo'
                         width={150}
