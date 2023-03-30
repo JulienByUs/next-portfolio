@@ -368,7 +368,7 @@ export default function HomePage() {
                           Je commence par élaborer un plan de projet en fonction des exigences spécifiques de mon client. Cela inclut de définir les jalons clés et les échéances pour m'assurer que le projet avance selon les attentes de mon client.
                         </p>
                         <p>
-                          Ensuite, je crée des maquettes ou des prototypes pour illustrer la disposition, l'interface utilisateur et la conception globale du site Web. Cela permet à mon client de visualiser l'apparence et le fonctionnement du site avant qu'il ne soit construit, et de suggérer des modifications si nécessaire.
+                          Ensuite, je crée des maquettes ou des prototypes pour illustrer la disposition, l'interface utilisateur et la conception globale du site Web. Cela permet à mon client de visualiser l'apparence et le fonctionnement du site avant qu'il ne soit construit, et de suggérer des modifications si nécessaires.
                         </p>
                       </TabPanel>
                       <TabPanel>
