@@ -6,8 +6,7 @@ const defaultMeta = {
   title: 'Julien Estanis | Designer & Développeur | Paris',
   siteName: 'Julien Estanis | Designer & Développeur | Paris',
   description:
-    'Bienvenue dans le portfolio de Julien Estanis, web designer et développeur basé à Paris. Consultez des exemples de mon travail et contactez-moi pour votre prochain projet.',
-  /** Without additional '/' on the end, e.g. https://theodorusclarence.com */
+    'Julien Estanis. Bienvenue dans monn portfolio, web designer et développeur basé à Paris. Consultez des exemples de mon travail et contactez-moi pour votre prochain projet.',
   url: 'https://julienestanis.fr',
   type: 'website',
   robots: 'follow, index',
@@ -87,7 +86,8 @@ export default function Seo(props: SeoProps) {
       <meta name='msapplication-TileColor' content='#ffffff' />
       <meta name='msapplication-config' content='/favicon/browserconfig.xml' />
       <meta name='theme-color' content='#ffffff' />
-        <meta name="google-site-verification" content="RinUoR08722phY56YL9IRtJS6lScVwXXmZ0Sb4uJx_0" />
+      <meta name="keywords" content="Webdesigner, Web développeur, Freelance, Paris, Création de site web, Développement de site web, Conception de site web, Site internet, HTML, CSS, JavaScript, UX design, UI design, Design graphique, Développement front-end, Développement back-end, Responsive design, SEO, Marketing numérique, Gestion de projet web" />
+      <meta name="google-site-verification" content="RinUoR08722phY56YL9IRtJS6lScVwXXmZ0Sb4uJx_0" />
     </Head>
   );
 }

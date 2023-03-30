@@ -65,11 +65,6 @@ export default function SingleProjet() {
         });
   }, [id, router]);
 
-  useEffect(() => {
-    if (!id || !project || project.length === 0) return;
-    document.title = `Julien Estanis | ${project.title} | Paris`;
-  }, [id, project]);
-
   const handlePreviousClick = () => {
     const previousId = Number(id) - 1;
     router.push(`/projet/${previousId}`);
@@ -139,7 +134,7 @@ export default function SingleProjet() {
     ScrollTrigger.create({
       trigger: element4,
       animation: animation,
-      start: 'top top',
+      start: '20% 55%',
       end: '100% 100%'
     });
 
@@ -153,8 +148,8 @@ export default function SingleProjet() {
     ScrollTrigger.create({
       trigger: element4,
       animation: animation2,
-      start: 'top top',
-      end: '100% 100%',
+      start: '20% 55%',
+      end: '100% 100%'
     });
 
     const animation5 = gsap.fromTo(
@@ -216,7 +211,7 @@ export default function SingleProjet() {
   return (
     <Layout>
       <Seo
-        templateTitle='Projets'
+        templateTitle='Projet'
         description={project.description}
       />
 
@@ -257,7 +252,7 @@ export default function SingleProjet() {
                   src={`https://julien-api.byus.dev/static/projects/${project.id}/${project.heroUrl}`}
                 alt='App screenshot'
                 width={2432}
-                height={600}
+                height={1100}
                 className='my-20 md:my-44 hero-img'
               />
               <div className='layout px-6 lg:px-8'>
@@ -265,7 +260,7 @@ export default function SingleProjet() {
                   <div className='grid grid-cols-1 items-center items-baseline gap-x-8 sm:gap-y-0 lg:grid-cols-2 lg:gap-y-16'>
                     <div>
                       <h2 className='role text-3xl font-bold tracking-tight text-[#0E0B3D] sm:text-4xl'>
-                        Role
+                        Rôle
                       </h2>
                     </div>
                     <p className='text-2sm project-role mt-5 font-light tracking-tight text-[#212121] leading-6 md:text-sm'>

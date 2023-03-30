@@ -54,7 +54,7 @@ export default function Header() {
         </nav>
         <nav>
           <UnstyledLink
-              href="#"
+              href="https://www.blog.julienestanis.fr/"
               className='fheWxZ hover:text-gray-600'
           >
             Blog (Bientôt)

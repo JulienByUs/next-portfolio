@@ -321,7 +321,7 @@ export default function HomePage() {
                   <p className='description-main text-md mt-6 overflow-hidden leading-6 text-gray-600'>
                     <div className='pb-2'>
                       <div>
-                        Je suis un webdesigner/développeur basé à Paris. Grâce à mon expertise solide,
+                        Je suis un webdesigner/développeur basé à Paris. Grâce à mon expertise,
                         j'ai aidé diverses entreprises à se démarquer avec des
                         sites web créatifs et performants.
                       </div>
@@ -403,13 +403,13 @@ export default function HomePage() {
                 Projets
               </h2>
               <h2 className='hidden text-3xl font-bold tracking-tight text-[#1463FF] sm:hidden sm:text-4xl md:block lg:block'>
-                récent
+                récents
               </h2>
               <h2
                 className='text-3xl font-bold tracking-tight text-[#212121] sm:text-4xl md:hidden lg:hidden'
                 data-aos='fade-up'
               >
-                Projets récent
+                Projets récents
               </h2>
             </div>
             <div className="flex justify-end projects-navigation mx-auto max-w-2xl lg:max-w-4xl">
@@ -465,13 +465,13 @@ export default function HomePage() {
                 Articles
               </h2>
               <h2 className='hidden text-3xl font-bold tracking-tight text-[#1463FF] sm:hidden sm:text-4xl md:block lg:block'>
-                récent
+                récents
               </h2>
               <h2
                 className='text-3xl font-bold tracking-tight text-[#212121] sm:text-4xl md:hidden lg:hidden'
                 data-aos='fade-up'
               >
-                Articles récent
+                Articles récents
               </h2>
             </div>
             <div className="flex justify-end projects-navigation mx-auto max-w-2xl lg:max-w-4xl">

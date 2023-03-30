@@ -4,11 +4,10 @@ import UnderlineLink from '@/components/links/UnderlineLink';
 
 const currentYear = new Date().getFullYear();
 
-const companyName = `© ${currentYear} JJDE, Inc. Tous les droits sont réservés.`;
+const companyName = ` Tous les droits sont réservés © Julien Estanis (JJDE) ${currentYear}.`;
 
 const footerLinks = {
   items: [
-    { name: 'Julien Estanis' },
     { name: 'estanisj@outlook.fr' },
     { name: '06.29.82.80.93' },
     { name: companyName },
@@ -49,14 +48,11 @@ export default function Footer() {
               </div>
               <div className='mt-10 md:mt-0'>
                 <h3 className='text-sm font-semibold leading-6 text-white'>
-                  Prêt ?
+                  Prêt/e ?
                 </h3>
                 <ul className='mt-6 space-y-4'>
                   <p className='text-sm leading-6 text-gray-300 hover:text-white'>
-                    Réservez une consultation avec moi, expert en conception et
-                    développement de sites web, pour créer un site web
-                    professionnel et attractif qui mettra en valeur votre
-                    entreprise et vous démarquera de la concurrence.
+                    Planifiez une consultation avec moi, spécialiste en conception et développement de sites web, afin de créer un site web professionnel et attractif qui valorisera votre entreprise et vous distinguera de vos concurrents.
                   </p>
                   <li key=''>
                     <UnderlineLink
