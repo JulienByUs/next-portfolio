@@ -6,7 +6,7 @@ const defaultMeta = {
   title: 'Julien Estanis | Designer & Développeur | Paris',
   siteName: 'Julien Estanis | Designer & Développeur | Paris',
   description:
-    'Julien Estanis. Bienvenue dans monn portfolio, web designer et développeur basé à Paris. Consultez des exemples de mon travail et contactez-moi pour votre prochain projet.',
+    'Bienvenue dans mon portfolio, web designer et développeur basé à Paris. Consultez des exemples de mon travail et contactez-moi pour votre prochain projet.',
   url: 'https://julienestanis.fr',
   type: 'website',
   robots: 'follow, index',
