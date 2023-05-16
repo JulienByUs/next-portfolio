@@ -14,6 +14,7 @@ const nextConfig = {
       'julien-api.byus.dev',
       'julienestanis.fr',
       'localhost',
+        'images.unsplash.com'
      ],
   },
 

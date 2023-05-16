@@ -1,71 +1,22 @@
 import * as React from 'react';
-
-import UnderlineLink from '@/components/links/UnderlineLink';
+import UnstyledLink from "@/components/links/UnstyledLink";
+import Fav from "~/svg/Fav.svg";
 
 const currentYear = new Date().getFullYear();
 
-const companyName = ` Tous les droits sont réservés © Julien Estanis (JJDE) ${currentYear}.`;
-
-const footerLinks = {
-  items: [
-    { name: 'estanisj@outlook.fr' },
-    { name: '06.29.82.80.93' },
-    { name: companyName },
-  ],
-};
-
 export default function Footer() {
   return (
-    <footer
-      className='relative z-10 mt-[-100px]'
-      aria-labelledby='footer-heading'
-    >
-      <div className='mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8 lg:py-32'>
-        <div className='xl:grid xl:grid-cols-3 xl:gap-8'>
-          <div>
-            <h2 className='text-3xl font-bold tracking-tight text-white sm:text-4xl'>
-              Travaillons
-            </h2>
-            <h2 className='text-3xl font-bold tracking-tight text-[#1463FF] sm:text-4xl'>
-              Ensemble <span className='text-white text-3xl font-bold tracking-tight text-[#1463FF] sm:text-4xl' >?</span>
-            </h2>
-          </div>
-          <div className='mt-16 grid grid-cols-1 gap-8 xl:col-span-2 xl:mt-0'>
-            <div className='md:grid md:grid-cols-2 md:gap-8'>
-              <div>
-                <h3 className='text-sm font-semibold leading-6 text-white'>
-                  Contactez-moi
-                </h3>
-                <ul role='list' className='mt-6 space-y-4'>
-                  {footerLinks.items.map((item) => (
-                    <li key={item.name}>
-                      <p className='text-sm leading-6 text-gray-300 hover:text-white'>
-                        {item.name}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className='mt-10 md:mt-0'>
-                <h3 className='text-sm font-semibold leading-6 text-white'>
-                  Prêt/e ?
-                </h3>
-                <ul className='mt-6 space-y-4'>
-                  <p className='text-sm leading-6 text-gray-300 hover:text-white'>
-                    Planifiez une consultation avec moi, spécialiste en conception et développement de sites web, afin de créer un site web professionnel et attractif qui valorisera votre entreprise et vous distinguera de vos concurrents.
-                  </p>
-                  <li key=''>
-                    <UnderlineLink
-                      href='https://calendly.com/estanisj/20min'
-                      className='text-sm leading-6 text-white font-bold'
-                    >
-                      Programmer un appel ici
-                    </UnderlineLink>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+    <footer className="bg-white mt-20">
+      <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
+        <div className="flex justify-center space-x-6 md:order-2">
+          <p className="text-sm leading-6 text-gray-600">Tous les droits sont réservés © Julien Estanis (JJDE) ${currentYear}.</p>
+        </div>
+        <div className="mt-8 md:order-1 md:mt-0">
+          <nav>
+            <UnstyledLink href='/' className='font-bold hover:text-gray-600'>
+              <Fav className='text-3xl' />
+            </UnstyledLink>
+          </nav>
         </div>
       </div>
     </footer>

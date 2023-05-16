@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <div className='overflow-x-hidden'>
       <Header />
       <Component {...pageProps} />
-      <Footer />
+        <Footer />
     </div>
   );
 }

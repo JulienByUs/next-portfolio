@@ -44,7 +44,7 @@ export default function Header() {
               href="/projets"
               className='fheWxZ hover:text-gray-600'
           >
-            Projets
+            Articles
           </UnstyledLink>
         </nav>
         <nav>
@@ -57,7 +57,7 @@ export default function Header() {
               href="https://www.blog.julienestanis.fr/"
               className='fheWxZ hover:text-gray-600'
           >
-            Blog (Bientôt)
+            Portfolio
           </UnstyledLink>
         </nav>
       </div>
