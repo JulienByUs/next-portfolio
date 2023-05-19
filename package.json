@@ -21,6 +21,7 @@
     "@emotion/styled": "^11.10.6",
     "@heroicons/react": "^2.0.16",
     "clsx": "^1.2.1",
+    "date-fns": "^2.30.0",
     "framer-motion": "^10.9.1",
     "gsap": "^3.11.5",
     "jquery": "^3.6.4",
