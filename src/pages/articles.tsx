@@ -21,7 +21,7 @@ gsap.registerPlugin(ScrollTrigger);
 // Before you begin editing, follow all comments with `STARTERCONF`,
 // to customize the default configuration.
 
-export default function Projets() {
+export default function Articles() {
 
   interface Project {
     id: number;

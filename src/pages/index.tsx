@@ -71,21 +71,31 @@ export default function HomePage() {
     // More posts...
   ]
 
-  interface Blog {
+  interface Article {
     id: number;
     title: string;
-    image: string;
+    body_one: string;
+    body_two: string;
+    body_three: string;
+    body_one_title: string;
+    body_two_title: string;
+    body_three_title: string;
+    key_one: string;
+    key_two: string;
+    key_three: string;
     description: string;
-
+    image: string;
+    hero: string;
+    published_at: string;
   }
 
-  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [article, setProject] = useState<Article | null>(null);
 
 
   useEffect(() => {
-    fetch('https://julien-api.byus.dev/api/blogs')
+    fetch('https://julien-api.byus.dev/api/articles')
         .then((response) => response.json())
-        .then((data) => setBlogs(data));
+        .then((data) => setProject(data));
   }, []);      //Listing
 
   useEffect(() => {
@@ -197,6 +207,7 @@ export default function HomePage() {
             <h2>Articles récents</h2>
             </div>
             <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-12 px-6 sm:gap-y-16 lg:grid-cols-2 lg:px-8">
+              {article && (
               <article className="mx-auto w-full max-w-2xl lg:mx-0 lg:max-w-lg">
                   <img
                       src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1152&amp;h=842&amp;q=80"
@@ -206,7 +217,7 @@ export default function HomePage() {
                   {featuredPost.date}
                 </time>
                 <h2 id="featured-post" className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                  {featuredPost.title}
+                  {article.title}
                 </h2>
                 <p className="mt-4 text-sm leading-6 text-gray-600">{featuredPost.description}</p>
                 <div className="relative mt-4 flex items-center gap-x-4">
@@ -229,6 +240,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </article>
+              )}
               <div className="mx-auto w-full max-w-2xl border-t border-gray-900/10 pt-12 sm:pt-16 lg:mx-0 lg:max-w-none lg:border-t-0 lg:pt-0">
                 <div className="-my-12 divide-y divide-gray-900/10">
                   {posts.map((post) => (

@@ -39,6 +39,7 @@ export default function SingleArticle() {
         key_three: string;
         description: string;
         image: string;
+        hero: string;
         published_at: string;
     }
 
@@ -118,12 +119,14 @@ export default function SingleArticle() {
             <main className='isolate'>
                 <section className='bg-white'>
                     <div id="hero-id" className="md:h-[700px] overflow-hidden">
+                        {article && (
                         <Image
-                            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+                            src={`https://julien-api.byus.dev/static/blog/${article.id}/${article.hero}`}
                             width="3000"
                             height={500}
                             alt="Picture of the author"
                         />
+                        )}
                     </div>
                     <section>
                         {/* Hero section */}
@@ -190,7 +193,7 @@ export default function SingleArticle() {
                                                 <figure className="mt-16">
                                                     <img
                                                         className="aspect-video rounded-xl bg-gray-50 object-cover"
-                                                        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&w=1310&h=873&q=80&facepad=3"
+                                                        src={`https://julien-api.byus.dev/static/blog/${article.id}/${article.image}`}
                                                         alt=""
                                                     />
                                                     <figcaption

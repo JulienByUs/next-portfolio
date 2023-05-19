@@ -41,7 +41,7 @@ export default function Header() {
       <div className='layout flex h-14 items-center justify-between'>
         <nav>
           <UnstyledLink
-              href="/projets"
+              href="/articles"
               className='fheWxZ hover:text-gray-600'
           >
             Articles
