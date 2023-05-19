@@ -22,42 +22,37 @@ gsap.registerPlugin(ScrollTrigger);
 // Before you begin editing, follow all comments with `STARTERCONF`,
 // to customize the default configuration.
 
-export default function SingleProjet() {
-    interface Project {
+export default function SingleArticle() {
+    interface Article {
         id: number;
         title: string;
+        body: string;
         description: string;
-        catchphrase: string;
-        heroUrl: string;
-        logoUrl: string;
-        length: number;
-        role: string;
-        closeDescription: string;
-        overviewUrl: string;
-        url: string;
+        image: string;
+        published_at: string;
     }
 
-    const [project, setProject] = useState<Project | null>(null);
+    const [article, setProject] = useState<Article | null>(null);
     const router = useRouter();
-    const {id} = router.query;
+    const { slug } = router.query;
 
     useEffect(() => {
-        if (!id) return;
+        if (!slug) return;
 
-        fetch(`https://julien-api.byus.dev/api/projects/${id}`)
+        fetch(`https://julien-api.byus.dev/api/article/${slug}`)
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error(`Project not found: ${id}`);
+                    throw new Error(`Project not found: ${slug}`);
                 }
                 return response.json();
             })
             .then((data) => setProject(data))
             .catch((error) => {
-                // eslint-disable-next-line no-console
                 console.error(error);
                 router.push('/404');
             });
-    }, [id, router]);
+    }, [slug, router]);
+
 
     const posts = [
         {
@@ -116,30 +111,30 @@ export default function SingleProjet() {
                         <div className="absolute w-full isolate top-0 md:top-[250px]">
                             <div className="overflow-hidden">
                                 <div className="mx-auto md:max-w-[1280px] px-6 md:px-6 pb-12 md:pb-32 pt-20 md:pt-36 sm:pt-60 lg:px-8 lg:pt-32">
-                                    <div className="py-2 md:py-10 pl-2 md:pl-10 pr-2 md:pr-0 md:pr-[20rem]">
+                                    <div className="py-2 md:py-10 pl-4 md:pl-10 pr-4 md:pr-0 md:pr-[20rem]">
                                         <time dateTime="2020-03-16" className="block text-sm leading-6 text-white mb-2">
                                             Mar 16, 2020
                                         </time>
-                                        <h1 className="text-sm text-white bold leading-11 mb-3">Flowbite Blocks Tutorial - Learn how to get
+                                        <h1 className="text-sm md:text-4xl leading-6 md:leading-10 text-white bold leading-6 mb-3">Flowbite Blocks Tutorial - Learn how to get
                                             started with custom sections using the Flowbite Blocks</h1>
-                                        <p className="text-sm text-white light">This is an article that talks about
+                                        <p className="text-sm leading-6 md:text-xl text-white light">This is an article that talks about
                                             introduction. Whatever this is a dummy text.</p>
                                     </div>
                                     <section
-                                        className="flex flex-col md:flex-row inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10 bg-white w-full h-full pl-4 pr-4 md:pl-10 pt-10">
-                                        <div className="text-base leading-7 text-gray-700 w-full md:w-[70%]">
+                                        className="flex flex-col md:flex-row inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10 bg-white w-full h-full pl-4 pr-4 md:pl-10 py-5 md:py-10">
+                                        <div className="mb-5 text-base leading-7 text-gray-700 w-full md:w-[70%]">
                                             <p className="text-base font-semibold leading-7 text-indigo-600">Introducing</p>
-                                            <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">JavaScript
+                                            <h2 className="mt-2 font-bold tracking-tight text-gray-900 text-2xl md:text-3xl font-bold tracking-tight text-gray-900 leading-7">JavaScript
                                                 for Beginners</h2>
-                                            <p className="mt-6 text-xl leading-8">
+                                            <p className="mt-6 text-sm leading-6 md:text-base">
                                                 Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At
                                                 arcu, sit dui mi, nibh dui, diam eget
                                                 aliquam. Quisque id at vitae feugiat egestas ac. Diam nulla orci at in
                                                 viverra scelerisque eget. Eleifend
                                                 egestas fringilla sapien.
                                             </p>
-                                            <div className="mt-10 max-w-2xl">
-                                                <p>
+                                            <div className="mt-4 md:mt-10 max-w-2xl">
+                                                <p className="text-sm leading-6 md:text-base">
                                                     Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus
                                                     enim. Mattis mauris semper sed amet vitae
                                                     sed turpis id. Id dolor praesent donec est. Odio penatibus risus
@@ -153,7 +148,7 @@ export default function SingleProjet() {
                                                         <CheckCircleIcon
                                                             className="mt-1 h-5 w-5 flex-none text-indigo-600"
                                                             aria-hidden="true"/>
-                                                        <span>
+                                                        <span className="md:text-md text-base">
                 <strong className="font-semibold text-gray-900">Data types.</strong> Lorem ipsum, dolor sit amet
                 consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate
                 blanditiis ratione.
@@ -163,7 +158,7 @@ export default function SingleProjet() {
                                                         <CheckCircleIcon
                                                             className="mt-1 h-5 w-5 flex-none text-indigo-600"
                                                             aria-hidden="true"/>
-                                                        <span>
+                                                        <span className="md:text-sm leading-6 text-base">
                 <strong className="font-semibold text-gray-900">Loops.</strong> Anim aute id magna aliqua ad ad non
                 deserunt sunt. Qui irure qui lorem cupidatat commodo.
               </span>
@@ -172,13 +167,13 @@ export default function SingleProjet() {
                                                         <CheckCircleIcon
                                                             className="mt-1 h-5 w-5 flex-none text-indigo-600"
                                                             aria-hidden="true"/>
-                                                        <span>
+                                                        <span className="md:text-md text-base">
                 <strong className="font-semibold text-gray-900">Events.</strong> Ac tincidunt sapien vehicula erat
                 auctor pellentesque rhoncus. Et magna sit morbi lobortis.
               </span>
                                                     </li>
                                                 </ul>
-                                                <p className="mt-8">
+                                                <p className="mt-4 md:mt-8 md:text-base text-sm leading-6">
                                                     Et vitae blandit facilisi magna lacus commodo. Vitae sapien duis
                                                     odio id et. Id blandit molestie auctor
                                                     fermentum dignissim. Lacus diam tincidunt ac cursus in vel. Mauris
@@ -186,9 +181,9 @@ export default function SingleProjet() {
                                                     adipiscing egestas. Iaculis convallis ac tempor et ut. Ac lorem vel
                                                     integer orci.
                                                 </p>
-                                                <h2 className="mt-16 text-2xl font-bold tracking-tight text-gray-900">From
+                                                <h2 className="mt-8 md:mt-16 text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">From
                                                     beginner to expert in 3 hours</h2>
-                                                <p className="mt-6">
+                                                <p className="mt-3 md:mt-6 md:text-base text-sm leading-6">
                                                     Id orci tellus laoreet id ac. Dolor, aenean leo, ac etiam consequat
                                                     in. Convallis arcu ipsum urna nibh.
                                                     Pharetra, euismod vitae interdum mauris enim, consequat vulputate
@@ -219,7 +214,7 @@ export default function SingleProjet() {
                                                         </div>
                                                     </figcaption>
                                                 </figure>
-                                                <p className="mt-10">
+                                                <p className="mt-4 md:mt-8 md:text-base text-sm leading-6">
                                                     Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus
                                                     enim. Mattis mauris semper sed amet vitae
                                                     sed turpis id. Id dolor praesent donec est. Odio penatibus risus
@@ -241,9 +236,9 @@ export default function SingleProjet() {
                                                 </figcaption>
                                             </figure>
                                             <div className="mt-16 max-w-2xl">
-                                                <h2 className="text-2xl font-bold tracking-tight text-gray-900">Everything
+                                                <h2 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">Everything
                                                     you need to get up and running</h2>
-                                                <p className="mt-6">
+                                                <p className="mt-3 md:mt-6 md:text-base text-sm leading-6">
                                                     Purus morbi dignissim senectus mattis adipiscing. Amet, massa quam
                                                     varius orci dapibus volutpat cras. In
                                                     amet eu ridiculus leo sodales cursus tristique. Tincidunt sed tempus
@@ -252,7 +247,7 @@ export default function SingleProjet() {
                                                     auctor venenatis varius nunc, congue erat
                                                     ac. Cras fermentum convallis quam.
                                                 </p>
-                                                <p className="mt-8">
+                                                <p className="mt-4 md:mt-8 md:text-base text-sm leading-6">
                                                     Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus
                                                     enim. Mattis mauris semper sed amet vitae
                                                     sed turpis id. Id dolor praesent donec est. Odio penatibus risus
