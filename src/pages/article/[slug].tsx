@@ -4,7 +4,7 @@ import {ScrollTrigger} from 'gsap/dist/ScrollTrigger';
 import Image from 'next/image';
 import {useRouter} from 'next/router';
 import * as React from 'react';
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 import {format} from 'date-fns';
@@ -43,7 +43,7 @@ export default function SingleArticle() {
         published_at: string;
     }
 
-    const [article, setProject] = useState<Article | null>(null);
+    const [article, setArticle] = useState<Article | null>(null);
     const router = useRouter();
     const {slug} = router.query;
 
@@ -65,7 +65,7 @@ export default function SingleArticle() {
                 const formattedDate = format(new Date(data.published_at), 'dd MMMM, yyyy', {locale: fr});
 
                 // Update the project state with the formatted date
-                setProject({...data, published_at: formattedDate});
+                setArticle({...data, published_at: formattedDate});
             })
             .catch((error) => {
                 console.error(error);
@@ -89,32 +89,52 @@ export default function SingleArticle() {
                 imageUrl:
                     'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
             },
-        },
-        {
-            id: 3,
-            title: 'Boost your conversion rate',
-            href: '#',
-            description:
-                'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel iusto corrupti dicta laboris incididunt.',
-            date: 'Mar 10, 2020',
-            datetime: '2020-03-16',
-            author: {
-                name: 'Lindsay Walton',
-                href: '#',
-                imageUrl:
-                    'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-            },
-        },
+        }
         // More posts...
     ]
+
+    // 1. Create a reference to the input so we can fetch/clear it's value.
+    const inputEl = useRef(null);
+    // 2. Hold a message in state to handle the response from our API.
+    const [message, setMessage] = useState('');
+
+    const subscribe = async (e) => {
+        e.preventDefault();
+
+        // 3. Send a request to our API with the user's email address.
+        const res = await fetch('/api/subscribe', {
+            body: JSON.stringify({
+                email: inputEl.current.value,
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method: 'POST',
+        });
+
+        const { error } = await res.json();
+
+        if (error) {
+            // 4. If there was an error, update the message in state.
+            setMessage(error);
+            setMessage('Succès! 🎉 Vous êtes maintenant inscrit à la newsletter');
+            return;
+        }
+
+        // 5. Clear the input value and show a success message.
+        inputEl.current.value = '';
+        setMessage('Succès! 🎉 Vous êtes maintenant inscrit à la newsletter');
+    };
 
 
     return (
         <Layout>
-            <Seo
-                templateTitle='Projet'
-                description=''
-            />
+            {article && (
+                <Seo
+                    templateTitle={article.title}
+                    description={article.description}
+                />
+            )}
 
             <main className='isolate'>
                 <section className='bg-white'>
@@ -224,7 +244,7 @@ export default function SingleArticle() {
                                                     directement dans votre boîte mail ! Ne manquez pas cette occasion -
                                                     inscrivez-vous dès maintenant !
                                                 </p>
-                                                <form className="my-6 flex max-w-md gap-x-1">
+                                                <form className="my-6 flex max-w-md gap-x-1" onSubmit={subscribe}>
                                                     <label htmlFor="email-address" className="sr-only">
                                                         Votre précieux email
                                                     </label>
@@ -236,6 +256,7 @@ export default function SingleArticle() {
                                                         required
                                                         className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-[#171531]/10 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
                                                         placeholder="Votre précieux email (promis pas de spam)"
+                                                        ref={inputEl}
                                                     />
                                                     <button
                                                         type="submit"
@@ -293,7 +314,6 @@ export default function SingleArticle() {
                             </div>
                         </div>
                     </section>
-
 
                 </section>
             </main>

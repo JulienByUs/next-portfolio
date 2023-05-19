@@ -3,6 +3,8 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/20/solid';
+import {format} from 'date-fns';
+import {fr} from 'date-fns/locale';
 
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
@@ -23,36 +25,43 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Articles() {
 
-  interface Project {
+  interface Article {
     id: number;
     title: string;
-    image: string;
+    body_one: string;
+    body_two: string;
+    body_three: string;
+    body_one_title: string;
+    body_two_title: string;
+    body_three_title: string;
+    key_one: string;
+    key_two: string;
+    key_three: string;
     description: string;
-    catchphrase: string;
-    herourl: string;
-    length: number;
-    role: string;
-    closeDescription: string;
-    thumbnail: string;
+    image: string;
+    hero: string;
+    published_at: string;
+    slug: string;
   }
 
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    fetch('https://julien-api.byus.dev/api/projects')
-      .then((response) => response.json())
-      .then((data) => setProjects(data));
+    fetch('https://julien-api.byus.dev/api/articles')
+        .then((response) => response.json())
+        .then((data) => {
+          // Format the published_at date in French for each article
+          const formattedArticles = data.map((article) => {
+            const formattedDate = format(new Date(article.published_at), 'dd MMMM, yyyy', { locale: fr });
+            return { ...article, published_at: formattedDate };
+          });
 
-
-    // Delay animation by 2 seconds
-    setTimeout(() => {
-      gsap.fromTo(
-          '.first-class',
-          {x: 100, alpha: 0},
-          {x: 0, alpha: 1, duration: 1, delay: 0.5, ease: 'power1.out', stagger: 0.2}
-      );
-    }, 500);
+          // Update the articles state with the formatted dates
+          setArticles(formattedArticles);
+        });
   }, []);
+
+
 
   const posts = [
     {
@@ -107,30 +116,30 @@ export default function Articles() {
       <main>
         <section className='bg-white'>
           <div className="mx-auto max-w-7xl px-6 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
-            <div className="mx-auto max-w-2xl lg:mx-0">
+            <div>
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Articles</h2>
-              <p className="mt-2 text-lg leading-8 text-gray-600">
-                Learn how to grow your business with our expert advice.
+              <p className="mt-2 text-base md:text-lg leading-8 text-gray-600">
+                Découvrez ma collection d'articles captivants sur le développement web. Explorez des sujets passionnants, des conseils pratiques et des astuces pour renforcer vos compétences et rester à la pointe de l'industrie. Plongez dans le monde fascinant du développement web avec mes articles soigneusement sélectionnés.
               </p>
             </div>
-            <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-              {posts.map((post) => (
-                  <article key={post.id} className="py-10">
+            <div className="mx-auto mt-5 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-5 md:pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+              {articles.map((article) => (
+                  <article key={article.id} className="py-10">
                     <div className="group relative max-w-xl">
                       <img
-                          src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1152&amp;h=842&amp;q=80"
+                          src={`https://julien-api.byus.dev/static/blog/${article.id}/${article.image}`}
                           alt=""
                           className="aspect-[7/5] w-full max-w-none flex-none rounded-2xl bg-gray-50 object-cover" />
-                      <time dateTime={post.datetime} className="block text-sm leading-6 text-gray-600 mt-2">
-                        {post.date}
+                      <time dateTime={article.published_at} className="block text-sm leading-6 text-gray-600 mt-2">
+                        {article.published_at}
                       </time>
                       <h2 className="mt-2 text-lg font-semibold text-gray-900 group-hover:text-gray-600">
-                        <a href={post.href}>
+                        <a className="leading-5" href={`/article/${article.slug}`}>
                           <span className="absolute inset-0" />
-                          {post.title}
+                          {article.title}
                         </a>
                       </h2>
-                      <p className="mt-4 text-sm leading-6 text-gray-600">{post.description}</p>
+                      <p className="mt-4 text-sm leading-6 text-gray-600">{article.description}</p>
                     </div>
                     <div className="mt-4 flex">
                       <div className="relative mt-4 flex items-center gap-x-4">
@@ -146,7 +155,7 @@ export default function Articles() {
               ))}
             </div>
 
-            <nav className="flex items-center justify-between border-t border-gray-200 px-4 sm:px-0">
+            <nav className="hidden flex items-center justify-between border-t border-gray-200 px-4 sm:px-0">
               <div className="-mt-px flex w-0 flex-1">
                 <a
                     href="#"

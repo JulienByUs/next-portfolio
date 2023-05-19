@@ -3,11 +3,11 @@ import { useRouter } from 'next/router';
 
 // !STARTERCONF Change these default meta
 const defaultMeta = {
-  title: 'Julien Estanis | Designer & Développeur | Paris',
-  siteName: 'Julien Estanis | Designer & Développeur | Paris',
+  title: 'Julien Estanis | Le Blog',
+  siteName: 'Julien Estanis | Le Blog',
   description:
-    'Bienvenue dans mon portfolio, web designer et développeur basé à Paris. Consultez des exemples de mon travail et contactez-moi pour votre prochain projet.',
-  url: 'https://julienestanis.fr',
+    'Découvrez des articles captivants sur le développement web. Conseils pratiques, tendances, renforcez vos compétences. Rejoignez-nous !',
+  url: 'https://blog.julienestanis.fr',
   type: 'website',
   robots: 'follow, index',
   /**
@@ -86,7 +86,7 @@ export default function Seo(props: SeoProps) {
       <meta name='msapplication-TileColor' content='#ffffff' />
       <meta name='msapplication-config' content='/favicon/browserconfig.xml' />
       <meta name='theme-color' content='#ffffff' />
-      <meta name="keywords" content="Webdesigner, Web développeur, Freelance, Paris, Création de site web, Développement de site web, Conception de site web, Site internet, HTML, CSS, JavaScript, UX design, UI design, Design graphique, Développement front-end, Développement back-end, Responsive design, SEO, Marketing numérique, Gestion de projet web" />
+      <meta name="keywords" content="Articles développement web, tutoriels codage, insights industrie, astuces développement web, développeur web freelance, portfolio, blog développement web, ressources programmation, tendances développement web, tutoriels débutants, bonnes pratiques codage, inspiration web design, développement front-end, développement back-end, design web adaptatif." />
       <meta name="google-site-verification" content="RinUoR08722phY56YL9IRtJS6lScVwXXmZ0Sb4uJx_0" />
     </Head>
   );

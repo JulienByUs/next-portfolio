@@ -1,7 +1,9 @@
 import {gsap} from "gsap";
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import {useEffect, useRef, useState} from 'react';
+import {format} from 'date-fns';
+import {fr} from 'date-fns/locale';
 
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
@@ -37,39 +39,6 @@ export default function HomePage() {
           'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     },
   }
-  const posts = [
-    {
-      id: 2,
-      title: 'Boost your conversion rate',
-      href: '#',
-      description:
-          'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel iusto corrupti dicta laboris incididunt.',
-      date: 'Mar 10, 2020',
-      datetime: '2020-03-16',
-      author: {
-        name: 'Lindsay Walton',
-        href: '#',
-        imageUrl:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-    },
-    {
-      id: 3,
-      title: 'Boost your conversion rate',
-      href: '#',
-      description:
-          'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel iusto corrupti dicta laboris incididunt.',
-      date: 'Mar 10, 2020',
-      datetime: '2020-03-16',
-      author: {
-        name: 'Lindsay Walton',
-        href: '#',
-        imageUrl:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      },
-    },
-    // More posts...
-  ]
 
   interface Article {
     id: number;
@@ -87,22 +56,63 @@ export default function HomePage() {
     image: string;
     hero: string;
     published_at: string;
+    slug: string;
   }
 
-  const [article, setProject] = useState<Article | null>(null);
-
+  const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     fetch('https://julien-api.byus.dev/api/articles')
         .then((response) => response.json())
-        .then((data) => setProject(data));
-  }, []);      //Listing
+        .then((data) => {
+          // Format the published_at date in French for each article
+          const formattedArticles = data.map((article) => {
+            const formattedDate = format(new Date(article.published_at), 'dd MMMM, yyyy', { locale: fr });
+            return { ...article, published_at: formattedDate };
+          });
+
+          // Update the articles state with the formatted dates
+          setArticles(formattedArticles);
+        });
+  }, []);
+
 
   useEffect(() => {
   //
   }, []);
 
+  // 1. Create a reference to the input so we can fetch/clear it's value.
+  const inputEl = useRef(null);
+  // 2. Hold a message in state to handle the response from our API.
+  const [message, setMessage] = useState('');
 
+  const subscribe = async (e) => {
+    e.preventDefault();
+
+    // 3. Send a request to our API with the user's email address.
+    const res = await fetch('/api/subscribe', {
+      body: JSON.stringify({
+        email: inputEl.current.value,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    });
+
+    const { error } = await res.json();
+
+    if (error) {
+      // 4. If there was an error, update the message in state.
+      setMessage(error);
+      setMessage('Succès! 🎉 Vous êtes maintenant inscrit à la newsletter');
+      return;
+    }
+
+    // 5. Clear the input value and show a success message.
+    inputEl.current.value = '';
+    setMessage('Succès! 🎉 Vous êtes maintenant inscrit à la newsletter');
+  };
 
 
   return (
@@ -125,7 +135,7 @@ export default function HomePage() {
                     Abonnez-vous à ma newsletter et recevez du contenu exclusif directement dans votre boîte mail ! Ne manquez pas cette occasion - inscrivez-vous dès maintenant !
                   </p>
 
-                  <form className="mt-10 flex max-w-md gap-x-4">
+                  <form className="my-6 flex max-w-md gap-x-1" onSubmit={subscribe}>
                     <label htmlFor="email-address" className="sr-only">
                       Votre précieux email
                     </label>
@@ -137,6 +147,7 @@ export default function HomePage() {
                         required
                         className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-[#171531]/10 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
                         placeholder="Votre précieux email (promis pas de spam)"
+                        ref={inputEl}
                     />
                     <button
                         type="submit"
@@ -150,7 +161,7 @@ export default function HomePage() {
                   <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
                     <div className="relative">
                       <img
-                          src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                          src="/images/home1.png"
                           alt=""
                           className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
@@ -160,7 +171,7 @@ export default function HomePage() {
                   <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
                     <div className="relative">
                       <img
-                          src="https://images.unsplash.com/photo-1485217988980-11786ced9454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                          src="/images/home2.png"
                           alt=""
                           className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
@@ -168,7 +179,7 @@ export default function HomePage() {
                     </div>
                     <div className="relative">
                       <img
-                          src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-x=.4&w=396&h=528&q=80"
+                          src="/images/home3.png"
                           alt=""
                           className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
@@ -178,7 +189,7 @@ export default function HomePage() {
                   <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                     <div className="relative">
                       <img
-                          src="https://images.unsplash.com/photo-1670272504528-790c24957dda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=left&w=400&h=528&q=80"
+                          src="/images/home4.png"
                           alt=""
                           className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
@@ -186,7 +197,7 @@ export default function HomePage() {
                     </div>
                     <div className="relative">
                       <img
-                          src="https://images.unsplash.com/photo-1670272505284-8faba1c31f7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                          src="/images/home5.png"
                           alt=""
                           className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
@@ -207,19 +218,25 @@ export default function HomePage() {
             <h2>Articles récents</h2>
             </div>
             <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-12 px-6 sm:gap-y-16 lg:grid-cols-2 lg:px-8">
-              {articles.slice(0, 3).map((article) => (
-              <article className="mx-auto w-full max-w-2xl lg:mx-0 lg:max-w-lg">
+              {articles.map((article) => (
+              <article key={articles[0].id} className="mx-auto w-full max-w-2xl lg:mx-0 lg:max-w-lg">
                   <img
-                      src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1152&amp;h=842&amp;q=80"
+                      src={`https://julien-api.byus.dev/static/blog/${article.id}/${article.image}`}
                       alt=""
                       className="aspect-[7/5] w-full max-w-none flex-none rounded-2xl bg-gray-50 object-cover" />
-                <time dateTime={featuredPost.datetime} className="block text-sm leading-6 text-gray-600 mt-2">
-                  {featuredPost.date}
+                <time dateTime={article.published_at} className="block text-sm leading-6 text-gray-600 mt-2">
+                  {article.published_at}
                 </time>
-                <h2 id="featured-post" className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                  {article.title}
-                </h2>
-                <p className="mt-4 text-sm leading-6 text-gray-600">{featuredPost.description}</p>
+                {article.title.length > 50 ? (
+                    <h2 id="featured-post" className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                      {`${article.title.slice(0, 50)}...`}
+                    </h2>
+                ) : (
+                    <h2 id="featured-post" className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                      {article.title}
+                    </h2>
+                )}
+                <p className="mt-4 text-sm leading-6 text-gray-600">{article.description}</p>
                 <div className="relative mt-4 flex items-center gap-x-4">
                          <span className="inline-flex items-center gap-x-1.5 rounded-lg px-2 py-1 text-xs font-medium text-[#0E0B3D] ring-1 ring-inset ring-[#0E0B3D]">
                           Design
@@ -231,7 +248,7 @@ export default function HomePage() {
                 <div className="mt-4 flex flex-col justify-between gap-6 sm:mt-8 sm:flex-row-reverse sm:gap-8 lg:mt-4 lg:flex-col">
                   <div className="flex">
                     <a
-                        href={featuredPost.href}
+                        href={`/article/${article.slug}`}
                         className="text-sm font-semibold leading-6 text-indigo-600"
                         aria-describedby="featured-post"
                     >
@@ -241,9 +258,9 @@ export default function HomePage() {
                 </div>
               </article>
               ))}
-              <div className="mx-auto w-full max-w-2xl border-t border-gray-900/10 pt-12 sm:pt-16 lg:mx-0 lg:max-w-none lg:border-t-0 lg:pt-0">
+              <div className="hidden mx-auto w-full max-w-2xl border-t border-gray-900/10 pt-12 sm:pt-16 lg:mx-0 lg:max-w-none lg:border-t-0 lg:pt-0 d-none">
                 <div className="-my-12 divide-y divide-gray-900/10">
-                  {posts.map((post) => (
+                  {articles.map((post) => (
                       <article key={post.id} className="py-10">
                         <div className="group relative max-w-xl">
                           <time dateTime={post.datetime} className="block text-sm leading-6 text-gray-600">
