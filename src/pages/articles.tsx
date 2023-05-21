@@ -66,15 +66,15 @@ export default function Articles() {
   return (
     <Layout>
       <Seo
-        templateTitle='Projets'
+        templateTitle='Articles'
         description="
-        Découvrez mes réalisations dans le domaine du développement web et du design graphique. Sur cette page, vous pourrez explorer une variété de projets qui démontrent mon savoir-faire et mes compétences. J'ai travaillé avec divers clients pour créer des sites web, des applications et des designs graphiques personnalisés. Consultez ma page de projets pour en savoir plus sur mon travail et mes compétences.
+        Explorez ma collection d'excellents articles sur le développement Web. Explorez des sujets passionnants, des trucs et astuces pratiques pour améliorer vos compétences et garder une longueur d'avance sur l'industrie. Lisez mes articles triés sur le volet pour un aperçu approfondi du monde fascinant du développement Web.
         "
       />
 
       <main>
         <section className='bg-white'>
-          <div className="mx-auto max-w-7xl px-6 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
+          <div className="mx-auto max-w-7xl px-6 pt-20 md:pt-36 lg:px-8 lg:pt-32">
             <div>
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Articles</h2>
               <p className="mt-2 text-base md:text-lg leading-8 text-gray-600">

@@ -43,14 +43,14 @@ export default function HomePage() {
     slug: string;
   }
 
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState<Article[]>([]);
 
   useEffect(() => {
     fetch('https://julien-api.byus.dev/api/articles')
         .then((response) => response.json())
         .then((data) => {
           // Format the published_at date in French for each article
-          const formattedArticles = data.map((article) => {
+          const formattedArticles = data.map((article: Article) => {
             const formattedDate = format(new Date(article.published_at), 'dd MMMM, yyyy', { locale: fr });
             return { ...article, published_at: formattedDate };
           });
@@ -62,16 +62,40 @@ export default function HomePage() {
 
 
   useEffect(() => {
-  //
+    const heroh = document.querySelector('.hero-card-el h1');
+    const herop = document.querySelector('.hero-card-el p');
+    const heroform = document.querySelector('.hero-card-el form');
+    const home1 = document.querySelector("#home1");
+    const home2 = document.querySelector("#home2");
+    const home3 = document.querySelector("#home3");
+    const home4 = document.querySelector("#home4");
+    const home5 = document.querySelector("#home5");
+
+    gsap.to(heroh, {opacity: 1, y: 0, duration: 2, delay: .5, ease: "power4.out"});
+    gsap.to(herop, {opacity: 1, y: 0, duration: 2, delay: 2, ease: "power4.out"});
+    gsap.to(heroform, {opacity: 1, y: 0, duration: 2, delay: 3, ease: "power4.out"});
+
+    gsap.to(home1, {opacity: 1, duration: 2, delay: 1, ease: "power4.out"});
+    gsap.to(home2, {opacity: 1, duration: 2, delay: 2, ease: "power4.out"});
+    gsap.to(home3, {opacity: 1, duration: 2, delay: 4, ease: "power4.out"});
+    gsap.to(home4, {opacity: 1, duration: 2, delay: 3, ease: "power4.out"});
+    gsap.to(home5, {opacity: 1, duration: 2, delay: 5, ease: "power4.out"});
+
   }, []);
 
+
   // 1. Create a reference to the input so we can fetch/clear it's value.
-  const inputEl = useRef(null);
+  const inputEl = useRef<HTMLInputElement | null>(null);
   // 2. Hold a message in state to handle the response from our API.
   const [message, setMessage] = useState('');
 
-  const subscribe = async (e) => {
+  const subscribe = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
+
+
+    if (!inputEl.current) {
+      return; // Add a null check to handle the case when inputEl.current is null
+    }
 
     // 3. Send a request to our API with the user's email address.
     const res = await fetch('/api/subscribe', {
@@ -109,13 +133,13 @@ export default function HomePage() {
         {/* Hero section */}
         <div className="relative isolate">
           <div className="overflow-hidden">
-            <div className="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
+            <div className="hero-card-el mx-auto max-w-7xl px-6 pb-20 md:pb-32 pt-20 md:pt-36 lg:px-8 lg:pt-32">
               <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                 <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
                   <h1 className="text-4xl font-bold tracking-tight text-[#0E0B3D] sm:text-6xl">
                     Envie de suivre les dernières tendances du développement web ?
                   </h1>
-                  <p className="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
+                  <p className="relative mt-6 text-base md:text-lg leading-6 md:leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
                     Abonnez-vous à ma newsletter et recevez du contenu exclusif directement dans votre boîte mail ! Ne manquez pas cette occasion - inscrivez-vous dès maintenant !
                   </p>
 
@@ -142,7 +166,7 @@ export default function HomePage() {
                   </form>
                 </div>
                 <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
-                  <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
+                  <div id="home1" className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
                     <div className="relative">
                       <img
                           src="/images/home1.png"
@@ -152,7 +176,7 @@ export default function HomePage() {
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                     </div>
                   </div>
-                  <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
+                  <div id="home2" className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
                     <div className="relative">
                       <img
                           src="/images/home2.png"
@@ -161,7 +185,7 @@ export default function HomePage() {
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                     </div>
-                    <div className="relative">
+                    <div id="home3" className="relative">
                       <img
                           src="/images/home3.png"
                           alt=""
@@ -170,7 +194,7 @@ export default function HomePage() {
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                     </div>
                   </div>
-                  <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
+                  <div id="home4" className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                     <div className="relative">
                       <img
                           src="/images/home4.png"
@@ -179,7 +203,7 @@ export default function HomePage() {
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                     </div>
-                    <div className="relative">
+                    <div id="home5" className="relative">
                       <img
                           src="/images/home5.png"
                           alt=""
@@ -198,8 +222,8 @@ export default function HomePage() {
 
           {/* Articles section */}
           <div className='mx-auto mt-20 max-w-7xl px-6 sm:mt-20 lg:px-8'>
-            <div className="max-w-7xl px-6 lg:px-8 py-6 lg:py-8">
-            <h2>Articles récents</h2>
+            <div className="max-w-7xl px-6 lg:px-8 pb-10 lg:pb-12">
+            <h2 className="text-4xl font-bold tracking-tight text-[#0E0B3D] sm:text-6xl">Articles récents</h2>
             </div>
             <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-12 px-6 sm:gap-y-16 lg:grid-cols-2 lg:px-8">
               {articles.map((article) => (
@@ -242,36 +266,6 @@ export default function HomePage() {
                 </div>
               </article>
               ))}
-              <div className="hidden mx-auto w-full max-w-2xl border-t border-gray-900/10 pt-12 sm:pt-16 lg:mx-0 lg:max-w-none lg:border-t-0 lg:pt-0 d-none">
-                <div className="-my-12 divide-y divide-gray-900/10">
-                  {articles.map((post) => (
-                      <article key={post.id} className="py-10">
-                        <div className="group relative max-w-xl">
-                          <time dateTime={post.datetime} className="block text-sm leading-6 text-gray-600">
-                            {post.date}
-                          </time>
-                          <h2 className="mt-2 text-lg font-semibold text-gray-900 group-hover:text-gray-600">
-                            <a href={post.href}>
-                              <span className="absolute inset-0" />
-                              {post.title}
-                            </a>
-                          </h2>
-                          <p className="mt-4 text-sm leading-6 text-gray-600">{post.description}</p>
-                        </div>
-                        <div className="mt-4 flex">
-                          <div className="relative mt-4 flex items-center gap-x-4">
-                         <span className="inline-flex items-center gap-x-1.5 rounded-lg px-2 py-1 text-xs font-medium text-[#0E0B3D] ring-1 ring-inset ring-[#0E0B3D]">
-                          Design
-                        </span>
-                            <span className="inline-flex items-center gap-x-1.5 rounded-lg px-2 py-1 text-xs font-medium text-[#0E0B3D] ring-1 ring-inset ring-[#0E0B3D]">
-                          Research
-                        </span>
-                          </div>
-                        </div>
-                      </article>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
 

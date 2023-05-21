@@ -45,10 +45,11 @@ export default function SingleArticle() {
 
     const [article, setArticle] = useState<Article | null>(null);
     const router = useRouter();
+    const {id} = router.query;
     const {slug} = router.query;
 
     // Assuming the slug is used to identify the article ID in the URL
-    const currentArticleId = slug ? slug[0] : null;
+    const currentArticleId = id ? id[0] : null;
 
     useEffect(() => {
         if (!slug) return;
@@ -76,7 +77,7 @@ export default function SingleArticle() {
 
     const posts = [
         {
-            id: 2,
+            id: "2",
             title: 'Boost your conversion rate',
             href: '#',
             description:
@@ -94,12 +95,17 @@ export default function SingleArticle() {
     ]
 
     // 1. Create a reference to the input so we can fetch/clear it's value.
-    const inputEl = useRef(null);
+    const inputEl = useRef<HTMLInputElement | null>(null);
     // 2. Hold a message in state to handle the response from our API.
     const [message, setMessage] = useState('');
 
-    const subscribe = async (e) => {
+    const subscribe = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
+
+
+        if (!inputEl.current) {
+            return; // Add a null check to handle the case when inputEl.current is null
+        }
 
         // 3. Send a request to our API with the user's email address.
         const res = await fetch('/api/subscribe', {

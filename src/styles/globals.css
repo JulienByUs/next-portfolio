@@ -323,3 +323,18 @@ text {
 footer{
   background-color: rgb(23, 21, 49);
 }
+
+#home1,
+#home2,
+#home3,
+#home4,
+#home5{
+  opacity: 0;
+}
+
+.hero-card-el h1,
+.hero-card-el p,
+.hero-card-el form{
+  opacity: 0;
+  transform: translateY(20px);
+}
