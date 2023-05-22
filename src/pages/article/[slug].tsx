@@ -201,7 +201,7 @@ export default function SingleArticle() {
                                         className="flex flex-col md:flex-row inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10 bg-white w-full h-full pl-4 pr-4 md:pl-10 py-5 md:py-10">
                                         {article && (
                                             <div className="mb-5 text-base leading-7 text-gray-700 w-full md:w-[70%]">
-                                                <p className="text-base font-semibold leading-7 text-indigo-600">Introducing</p>
+                                                <p className="text-base font-semibold leading-7 text-indigo-600">Introduction</p>
                                                 <h2 className="mt-2 font-bold tracking-tight text-gray-900 text-2xl md:text-3xl font-bold tracking-tight text-gray-900 leading-7">{article.body_one_title}</h2>
                                                 <p className="mt-6 text-sm leading-6 md:text-base">
                                                     {article.body_one}
@@ -344,9 +344,9 @@ export default function SingleArticle() {
                                                         Me notifier
                                                     </button>
                                                 </form>
-                                                <p className="text-base font-semibold leading-7 text-[#0E0B3D]">Articles
+                                                <p className="hidden text-base font-semibold leading-7 text-[#0E0B3D]">Articles
                                                     récents</p>
-                                                <div className="-my-8 divide-y divide-gray-900/10">
+                                                <div className="hidden -my-8 divide-y divide-gray-900/10">
                                                     {posts.map((post) => {
                                                         // Check if the post ID matches the ID of the current article being viewed
                                                         if (post.id === currentArticleId) {
