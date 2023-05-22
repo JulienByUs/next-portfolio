@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/20/solid';
 import {format} from 'date-fns';
 import {fr} from 'date-fns/locale';
+import Image from "next/image";
 
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
@@ -44,26 +45,23 @@ export default function Articles() {
     slug: string;
   }
 
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState<Article[]>([])
 
   useEffect(() => {
     fetch('https://julien-api.byus.dev/api/articles')
         .then((response) => response.json())
         .then((data) => {
-          // Format the published_at date in French for each article
-          const formattedArticles = data.map((article) => {
-            const formattedDate = format(new Date(article.published_at), 'dd MMMM, yyyy', { locale: fr });
-            return { ...article, published_at: formattedDate };
-          });
+            const formattedArticles = data.map((article: Article) => {
+                const formattedDate = format(new Date(article.published_at), 'dd MMMM, yyyy', { locale: fr });
+                return { ...article, published_at: formattedDate };
+            });
 
-          // Update the articles state with the formatted dates
           setArticles(formattedArticles);
         });
   }, []);
 
 
-
-  return (
+    return (
     <Layout>
       <Seo
         templateTitle='Articles'
@@ -83,11 +81,11 @@ export default function Articles() {
             </div>
             <div className="mx-auto mt-5 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-5 md:pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
               {articles.map((article) => (
-                  <article key={article.id} className="py-10">
+                  <article key={article.slug} className="py-10">
                     <div className="group relative max-w-xl">
                       <img
                           src={`https://julien-api.byus.dev/static/blog/${article.id}/${article.image}`}
-                          alt=""
+                          alt="image article"
                           className="aspect-[7/5] w-full max-w-none flex-none rounded-2xl bg-gray-50 object-cover" />
                       <time dateTime={article.published_at} className="block text-sm leading-6 text-gray-600 mt-2">
                         {article.published_at}

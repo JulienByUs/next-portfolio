@@ -87,7 +87,7 @@ export default function Seo(props: SeoProps) {
       <meta name='msapplication-config' content='/favicon/browserconfig.xml' />
       <meta name='theme-color' content='#ffffff' />
       <meta name="keywords" content="Articles développement web, tutoriels codage, insights industrie, astuces développement web, développeur web freelance, portfolio, blog développement web, ressources programmation, tendances développement web, tutoriels débutants, bonnes pratiques codage, inspiration web design, développement front-end, développement back-end, design web adaptatif." />
-      <meta name="google-site-verification" content="RinUoR08722phY56YL9IRtJS6lScVwXXmZ0Sb4uJx_0" />
+        <meta name="google-site-verification" content="RinUoR08722phY56YL9IRtJS6lScVwXXmZ0Sb4uJx_0" />
     </Head>
   );
 }

@@ -237,7 +237,7 @@ export default function SingleArticle() {
                                                     </p>
                                                 </div>
                                                 <figure className="mt-16">
-                                                    <img
+                                                    <Image
                                                         className="aspect-video rounded-xl bg-gray-50 object-cover"
                                                         src={`https://julien-api.byus.dev/static/blog/${article.id}/${article.image}`}
                                                         alt=""
