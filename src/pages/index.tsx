@@ -47,10 +47,15 @@ export default function HomePage() {
 
   useEffect(() => {
     fetch('https://julien-api.byus.dev/api/articles')
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch articles');
+          }
+          return response.json();
+        })
         .then((data) => {
           // Format the published_at date in French for each article
-          const formattedArticles = data.map((article: Article) => {
+          const formattedArticles = data.map((article) => {
             const formattedDate = format(new Date(article.published_at), 'dd MMMM, yyyy', { locale: fr });
             return { ...article, published_at: formattedDate };
           });
@@ -235,9 +240,9 @@ export default function HomePage() {
                 <time dateTime={article.published_at} className="block text-sm leading-6 text-gray-600 mt-2">
                   {article.published_at}
                 </time>
-                {article.title.length > 50 ? (
+                {article.title.length > 33 ? (
                     <h2 id="featured-post" className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                      {`${article.title.slice(0, 50)}...`}
+                      {`${article.title.slice(0, 33)}...`}
                     </h2>
                 ) : (
                     <h2 id="featured-post" className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -247,10 +252,10 @@ export default function HomePage() {
                 <p className="mt-4 text-sm leading-6 text-gray-600">{article.description}</p>
                 <div className="relative mt-4 flex items-center gap-x-4">
                          <span className="inline-flex items-center gap-x-1.5 rounded-lg px-2 py-1 text-xs font-medium text-[#0E0B3D] ring-1 ring-inset ring-[#0E0B3D]">
-                          Design
+                          Web
                         </span>
                   <span className="inline-flex items-center gap-x-1.5 rounded-lg px-2 py-1 text-xs font-medium text-[#0E0B3D] ring-1 ring-inset ring-[#0E0B3D]">
-                          Research
+                          Digital
                         </span>
                 </div>
                 <div className="mt-4 flex flex-col justify-between gap-6 sm:mt-8 sm:flex-row-reverse sm:gap-8 lg:mt-4 lg:flex-col">

@@ -103,10 +103,10 @@ export default function Articles() {
                     <div className="mt-4 flex">
                       <div className="relative mt-4 flex items-center gap-x-4">
                          <span className="inline-flex items-center gap-x-1.5 rounded-lg px-2 py-1 text-xs font-medium text-[#0E0B3D] ring-1 ring-inset ring-[#0E0B3D]">
-                          Design
+                          Web
                         </span>
                         <span className="inline-flex items-center gap-x-1.5 rounded-lg px-2 py-1 text-xs font-medium text-[#0E0B3D] ring-1 ring-inset ring-[#0E0B3D]">
-                          Research
+                          Digital
                         </span>
                       </div>
                     </div>

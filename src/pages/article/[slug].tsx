@@ -31,12 +31,37 @@ export default function SingleArticle() {
         body_one: string;
         body_two: string;
         body_three: string;
+        body_four: string;
+        body_five: string;
+        body_six: string;
+        body_seven: string;
+        body_eight: string;
+        body_nine: string;
+        body_ten: string;
+        body_twelve: string;
+        body_thirteen: string;
+        body_fourteen: string;
+        body_fifteen: string;
+        body_sixteen: string;
+        body_seventeen: string;
+        body_eighteen: string;
         body_one_title: string;
         body_two_title: string;
         body_three_title: string;
-        key_one: string;
-        key_two: string;
-        key_three: string;
+        body_four_title: string;
+        body_five_title: string;
+        body_six_title: string;
+        body_seven_title: string;
+        body_eight_title: string;
+        body_nine_title: string;
+        body_ten_title: string;
+        body_twelve_title: string;
+        body_thirteen_title: string;
+        body_fourteen_title: string;
+        body_fifteen_title: string;
+        body_sixteen_title: string;
+        body_seventeen_title: string;
+        body_eighteen_title: string;
         description: string;
         image: string;
         hero: string;
@@ -181,39 +206,34 @@ export default function SingleArticle() {
                                                 <p className="mt-6 text-sm leading-6 md:text-base">
                                                     {article.body_one}
                                                 </p>
-                                                <p className="mt-6 text-sm leading-6 md:text-base"
-                                                   dangerouslySetInnerHTML={{__html: article.body_one}}>
-                                                </p>
                                                 <div className="mt-4 md:mt-10 max-w-2xl">
-                                                    <ul role="list" className="mt-8 max-w-xl space-y-8 text-gray-600">
-                                                        <li className="flex gap-x-3">
-                                                            <CheckCircleIcon
-                                                                className="mt-1 h-5 w-5 flex-none text-indigo-600"
-                                                                aria-hidden="true"/>
-                                                            <span className="md:text-md text-base">
-                <strong className="font-semibold text-gray-900">Data types.</strong> {article.key_one}
-              </span>
-                                                        </li>
-                                                        <li className="flex gap-x-3">
-                                                            <CheckCircleIcon
-                                                                className="mt-1 h-5 w-5 flex-none text-indigo-600"
-                                                                aria-hidden="true"/>
-                                                            <span className="md:text-sm leading-6 text-base">
-                <strong className="font-semibold text-gray-900">Loops.</strong> {article.key_two}
-              </span>
-                                                        </li>
-                                                        <li className="flex gap-x-3">
-                                                            <CheckCircleIcon
-                                                                className="mt-1 h-5 w-5 flex-none text-indigo-600"
-                                                                aria-hidden="true"/>
-                                                            <span className="md:text-md text-base">
-                <strong className="font-semibold text-gray-900">Events.</strong> {article.key_three}
-              </span>
-                                                        </li>
-                                                    </ul>
-                                                    <h2 className="mt-8 md:mt-16 text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_two_title}</h2>
+                                                    <h3 className="mt-8 md:mt-16 text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_two_title}</h3>
                                                     <p className="mt-3 md:mt-6 md:text-base text-sm leading-6"
                                                        dangerouslySetInnerHTML={{__html: article.body_two}}>
+                                                    </p>
+                                                </div>
+                                                <div className="mt-4 max-w-2xl">
+                                                    <h3 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_three_title}</h3>
+                                                    <p className="mt-3 md:mt-6 md:text-base text-sm leading-6"
+                                                       dangerouslySetInnerHTML={{__html: article.body_three}}>
+                                                    </p>
+                                                </div>
+                                                <div className="mt-4 max-w-2xl">
+                                                    <h3 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_four_title}</h3>
+                                                    <p className="mt-3 md:mt-6 md:text-base text-sm leading-6"
+                                                       dangerouslySetInnerHTML={{__html: article.body_four}}>
+                                                    </p>
+                                                </div>
+                                                <div className="mt-4 max-w-2xl">
+                                                    <h3 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_five_title}</h3>
+                                                    <p className="mt-3 md:mt-6 md:text-base text-sm leading-6"
+                                                       dangerouslySetInnerHTML={{__html: article.body_five}}>
+                                                    </p>
+                                                </div>
+                                                <div className="mt-4 max-w-2xl">
+                                                    <h3 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_six_title}</h3>
+                                                    <p className="mt-3 md:mt-6 md:text-base text-sm leading-6"
+                                                       dangerouslySetInnerHTML={{__html: article.body_six}}>
                                                     </p>
                                                 </div>
                                                 <figure className="mt-16">
@@ -222,18 +242,71 @@ export default function SingleArticle() {
                                                         src={`https://julien-api.byus.dev/static/blog/${article.id}/${article.image}`}
                                                         alt=""
                                                     />
-                                                    <figcaption
-                                                        className="mt-4 flex gap-x-2 text-sm leading-6 text-gray-500">
-                                                        <InformationCircleIcon
-                                                            className="mt-0.5 h-5 w-5 flex-none text-gray-300"
-                                                            aria-hidden="true"/>
-                                                        Faucibus commodo massa rhoncus, volutpat.
-                                                    </figcaption>
                                                 </figure>
                                                 <div className="mt-16 max-w-2xl">
-                                                    <h2 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_three_title}</h2>
+                                                    <h4 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_seven_title}</h4>
                                                     <p className="mt-3 md:mt-6 md:text-base text-sm leading-6"
-                                                       dangerouslySetInnerHTML={{__html: article.body_three}}>
+                                                       dangerouslySetInnerHTML={{__html: article.body_seven}}>
+                                                    </p>
+                                                </div>
+                                                <div className="mt-4 max-w-2xl">
+                                                    <h5 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_eight_title}</h5>
+                                                    <p className="mt-3 md:mt-6 md:text-base text-sm leading-6"
+                                                       dangerouslySetInnerHTML={{__html: article.body_eight}}>
+                                                    </p>
+                                                </div>
+                                                <div className="mt-4 max-w-2xl">
+                                                    <h5 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_nine_title}</h5>
+                                                    <p className="mt-3 md:mt-6 md:text-base text-sm leading-6"
+                                                       dangerouslySetInnerHTML={{__html: article.body_nine}}>
+                                                    </p>
+                                                </div>
+                                                <div className="mt-4 max-w-2xl">
+                                                    <h5 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_ten_title}</h5>
+                                                    <p className="mt-3 md:mt-6 md:text-base text-sm leading-6"
+                                                       dangerouslySetInnerHTML={{__html: article.body_ten}}>
+                                                    </p>
+                                                </div>
+                                                <div className="mt-4 max-w-2xl">
+                                                    <h5 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_twelve_title}</h5>
+                                                    <p className="mt-3 md:mt-6 md:text-base text-sm leading-6"
+                                                       dangerouslySetInnerHTML={{__html: article.body_twelve}}>
+                                                    </p>
+                                                </div>
+                                                <div className="mt-4 max-w-2xl">
+                                                    <h5 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_thirteen_title}</h5>
+                                                    <p className="mt-3 md:mt-6 md:text-base text-sm leading-6"
+                                                       dangerouslySetInnerHTML={{__html: article.body_thirteen}}>
+                                                    </p>
+                                                </div>
+                                                <div className="mt-4 max-w-2xl">
+                                                    <h5 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_fourteen_title}</h5>
+                                                    <p className="mt-3 md:mt-6 md:text-base text-sm leading-6"
+                                                       dangerouslySetInnerHTML={{__html: article.body_fourteen}}>
+                                                    </p>
+                                                </div>
+                                                <div className="mt-4 max-w-2xl">
+                                                    <h5 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_fifteen_title}</h5>
+                                                    <p className="mt-3 md:mt-6 md:text-base text-sm leading-6"
+                                                       dangerouslySetInnerHTML={{__html: article.body_fifteen}}>
+                                                    </p>
+                                                </div>
+                                                <div className="mt-4 max-w-2xl">
+                                                    <h5 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_sixteen_title}</h5>
+                                                    <p className="mt-3 md:mt-6 md:text-base text-sm leading-6"
+                                                       dangerouslySetInnerHTML={{__html: article.body_sixteen}}>
+                                                    </p>
+                                                </div>
+                                                <div className="mt-4 max-w-2xl">
+                                                    <h5 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_seventeen_title}</h5>
+                                                    <p className="mt-3 md:mt-6 md:text-base text-sm leading-6"
+                                                       dangerouslySetInnerHTML={{__html: article.body_seventeen}}>
+                                                    </p>
+                                                </div>
+                                                <div className="mt-4 max-w-2xl">
+                                                    <h6 className="text-md md:text-2xl font-bold tracking-tight text-gray-900 leading-7">{article.body_eighteen_title}</h6>
+                                                    <p className="mt-3 md:mt-6 md:text-base text-sm leading-6"
+                                                       dangerouslySetInnerHTML={{__html: article.body_eighteen}}>
                                                     </p>
                                                 </div>
                                             </div>
