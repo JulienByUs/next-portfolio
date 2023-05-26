@@ -18,6 +18,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
+import {format} from 'date-fns';
+import {fr} from 'date-fns/locale';
 
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
@@ -46,17 +48,28 @@ export default function HomePage() {
     thumbnail: string;
   }
 
-  interface Blog {
+  interface Article {
     id: number;
     title: string;
-    image: string;
+    body_one: string;
+    body_two: string;
+    body_three: string;
+    body_one_title: string;
+    body_two_title: string;
+    body_three_title: string;
+    key_one: string;
+    key_two: string;
+    key_three: string;
     description: string;
-
+    image: string;
+    hero: string;
+    published_at: string;
+    slug: string;
   }
 
   const [projects, setProjects] = useState<Project[]>([]);
 
-  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [articles, setArticles] = useState<Article[]>([]);
 
   useEffect(() => {
     fetch('https://julien-api.byus.dev/api/projects')
@@ -64,10 +77,22 @@ export default function HomePage() {
         .then((data) => setProjects(data));
   }, []);
 
+
   useEffect(() => {
-    fetch('https://julien-api.byus.dev/api/blogs')
-        .then((response) => response.json())
-        .then((data) => setBlogs(data));
+    fetch('https://julien-api.byus.dev/api/articles')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch articles');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          const formattedArticles = data.map((article: Article) => {
+            const formattedDate = format(new Date(article.published_at), 'dd MMMM, yyyy', {locale: fr});
+            return {...article, published_at: formattedDate};
+          });
+          setArticles(formattedArticles);
+        });
   }, []);
 
   useEffect(() => {
@@ -488,33 +513,42 @@ export default function HomePage() {
 
           {/* Blog section */}
           <div className='articlez parent sm:my-13 lg:my-13 relative mt-3 mb-52 inline-flex'>
-            {blogs.length === 0 ? (
-                <div className='mx-auto w-screen lg:max-w-4xl text-center'>
-                  <figcaption className='mb-4 no-article text-xs leading-4 text-gray-500 md:text-sm md:leading-6'>
-                    Aucun article de blog publié pour le moment.
-                  </figcaption>
-                </div>
-            ) : (
-                blogs.slice(0, 3).map((blog) => (
-                    <div
-                        key={blog.id}
-                        className='child child-blog z-20 inline-table w-screen px-6 text-[#212121]'
-                    >
-                      <div className='mx-auto max-w-2xl lg:max-w-4xl'>
-                        <figure className='mt-6 md:mt-16'>
-                          <p className='mb-2 mb-0 text-xl font-bold tracking-tight text-[#212121] md:text-3xl'>
-                            {blog.title}
-                          </p>
-                          <div className='grid grid-flow-col grid-rows-1 gap-1'>
-                            <figcaption className='mb-4 flex gap-x-2 text-xs leading-4 text-gray-500 md:text-sm md:leading-6'>
-                              {blog.description}
-                            </figcaption>
-                          </div>
-                        </figure>
+            {articles.slice(0, 3).map((article) => (
+                <div
+                    key={articles[0].id}
+                    className='child child-project z-20 inline-table w-screen px-6 text-[#212121]'
+                >
+                  <div className='mx-auto max-w-2xl lg:max-w-4xl'>
+                    <figure className='mt-6 md:mt-16'>
+                      {article.title.length > 33 ? (
+                          <h4 className='mb-2 mb-0 text-xl font-bold tracking-tight text-[#212121] md:text-3xl'>
+                            {`${article.title.slice(0, 33)}...`}
+                          </h4>
+                      ) : (
+                          <h4 className='mb-2 mb-0 text-xl font-bold tracking-tight text-[#212121] md:text-3xl'>
+                            {article.title}
+                          </h4>
+                      )}
+                      <div className='grid grid-flow-col grid-rows-1 gap-1'>
+                        <figcaption className='mb-4 flex gap-x-2 text-xs leading-4 text-gray-500 md:text-sm md:leading-6'>
+                          {article.description}
+                        </figcaption>
                       </div>
-                    </div>
-                ))
-            )}
+                      <Link target="_blank" title={article.title} href={`https://blog.julienestanis.fr/article/${article.slug}`}>
+                        <Image
+                            className='aspect-video rounded-xl bg-gray-50 object-cover'
+                            src={`https://julien-api.byus.dev/static/blog/${article.id}/${article.image}`}
+                            alt=''
+                            width={2432}
+                            height={600}
+                            blurDataURL="data:..."
+                            placeholder="blur"
+                        />
+                      </Link>
+                    </figure>
+                  </div>
+                </div>
+            ))}
           </div>
         </section>
       </main>

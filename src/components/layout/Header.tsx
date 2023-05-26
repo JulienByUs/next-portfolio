@@ -54,10 +54,10 @@ export default function Header() {
         </nav>
         <nav>
           <UnstyledLink
-              href="https://www.blog.julienestanis.fr/"
+              href="https://blog.julienestanis.fr/"
               className='fheWxZ hover:text-gray-600'
           >
-            Blog (Bientôt)
+            Blog
           </UnstyledLink>
         </nav>
       </div>
