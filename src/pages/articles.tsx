@@ -83,8 +83,10 @@ export default function Articles() {
               {articles.map((article) => (
                   <article key={article.slug} className="py-10">
                     <div className="group relative max-w-xl">
-                      <img
+                        <Image
                           src={`https://julien-api.byus.dev/static/blog/${article.id}/${article.image}`}
+                          width={500}
+                          height={500}
                           alt="image article"
                           className="aspect-[7/5] w-full max-w-none flex-none rounded-2xl bg-gray-50 object-cover" />
                       <time dateTime={article.published_at} className="block text-sm leading-6 text-gray-600 mt-2">

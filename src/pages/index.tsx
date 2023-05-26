@@ -1,13 +1,13 @@
 import {gsap} from "gsap";
 import {ScrollTrigger} from 'gsap/dist/ScrollTrigger';
 import * as React from 'react';
+import Image from 'next/image';
 import {useEffect, useRef, useState} from 'react';
 import {format} from 'date-fns';
 import {fr} from 'date-fns/locale';
 
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
-import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -172,8 +172,10 @@ export default function HomePage() {
                                         <div id="home1"
                                              className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
                                             <div className="relative">
-                                                <img
+                                                <Image
                                                     src="/images/home1.png"
+                                                    width={500}
+                                                    height={500}
                                                     alt="illustration home"
                                                     className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                                 />
@@ -184,8 +186,10 @@ export default function HomePage() {
                                         <div id="home2"
                                              className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
                                             <div className="relative">
-                                                <img
+                                                <Image
                                                     src="/images/home2.png"
+                                                    width={500}
+                                                    height={500}
                                                     alt="illustration home"
                                                     className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                                 />
@@ -193,8 +197,10 @@ export default function HomePage() {
                                                     className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"/>
                                             </div>
                                             <div id="home3" className="relative">
-                                                <img
+                                                <Image
                                                     src="/images/home3.png"
+                                                    width={500}
+                                                    height={500}
                                                     alt="illustration home"
                                                     className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                                 />
@@ -206,6 +212,8 @@ export default function HomePage() {
                                             <div className="relative">
                                                 <img
                                                     src="/images/home4.png"
+                                                    width={500}
+                                                    height={500}
                                                     alt="illustration home"
                                                     className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                                 />
@@ -215,6 +223,8 @@ export default function HomePage() {
                                             <div id="home5" className="relative">
                                                 <img
                                                     src="/images/home5.png"
+                                                    width={500}
+                                                    height={500}
                                                     alt="illustration home"
                                                     className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                                 />
@@ -239,8 +249,10 @@ export default function HomePage() {
                             className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-12 px-6 sm:gap-y-16 lg:grid-cols-2 lg:px-8">
                             {articles.map((article) => (
                                 <article key={articles[0].id} className="mx-auto w-full max-w-2xl lg:mx-0 lg:max-w-lg">
-                                    <img
+                                    <Image
                                         src={`https://julien-api.byus.dev/static/blog/${article.id}/${article.image}`}
+                                        width={500}
+                                        height={500}
                                         alt="illustration article"
                                         className="aspect-[7/5] w-full max-w-none flex-none rounded-2xl bg-gray-50 object-cover"/>
                                     <time dateTime={article.published_at}
