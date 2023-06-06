@@ -336,7 +336,6 @@ export default function HomePage() {
                         concrétiseront en des projets réels et fonctionnels.
                       </div>
                     </div>
-
                   </p>
                   <h1 className='title-main overflow-hidden font-bold leading-10 tracking-tight text-[#212121] sm:text-6xl mt-6'>
                     <div className='overflow-hidden pb-2 text-[#0E0B3D] text-[38px] text-md-[54px] leading-[45px] leading-md-[64px]'>
