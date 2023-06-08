@@ -390,7 +390,7 @@ footer{
   height: 20px;
   border-radius: 100%;
   background-color: #0E0B3D;
-  opacity: .3;
+  opacity: .5;
   position: fixed;
   transform: translate(-50%, -50%);
   pointer-events: none;
