@@ -422,19 +422,9 @@ export default function HomePage() {
 
           {/* Feature section */}
           <div className='feature mx-auto mt-20 max-w-7xl px-6 sm:mt-20 lg:px-8'>
-            <div className='mx-auto max-w-2xl lg:max-w-4xl'>
-              <h2 className='hidden text-3xl font-bold tracking-tight text-[#212121] sm:hidden sm:text-4xl md:block lg:block'>
-                Projets
-              </h2>
-              <h2 className='hidden text-3xl font-bold tracking-tight text-[#1463FF] sm:hidden sm:text-4xl md:block lg:block'>
-                récents
-              </h2>
-              <h2
-                className='text-3xl font-bold tracking-tight text-[#212121] sm:text-4xl md:hidden lg:hidden'
-                data-aos='fade-up'
-              >
-                Projets récents
-              </h2>
+            <div className="mx-auto max-w-2xl lg:max-w-4xl">
+              <h2 className="text-4xl font-bold tracking-tight text-[#212121] sm:text-6xl">Projet
+                récents</h2>
             </div>
             <div className="flex justify-end projects-navigation mx-auto max-w-2xl lg:max-w-4xl">
               <ArrowLongLeftIcon
@@ -449,7 +439,7 @@ export default function HomePage() {
           </div>
 
           {/* Projects section */}
-          <div className='parent sm:my-13 lg:my-13 relative mt-3 mb-36 inline-flex parentProj'>
+          <div className='parent sm:my-13 lg:my-13 relative mt-3 mb-26 mb-10 md:mb-36 inline-flex parentProj'>
             {projects.slice(0, 3).map((project) => (
               <div
                 key={project.id}
@@ -482,73 +472,65 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Feature section */}
-          <div className='articles mx-auto max-w-7xl px-6 lg:px-8'>
-            <div className='mx-auto max-w-2xl lg:max-w-4xl'>
-              <h2 className='hidden text-3xl font-bold tracking-tight text-[#212121] sm:hidden sm:text-4xl md:block lg:block'>
-                Articles
-              </h2>
-              <h2 className='hidden text-3xl font-bold tracking-tight text-[#1463FF] sm:hidden sm:text-4xl md:block lg:block'>
-                récents
-              </h2>
-              <h2
-                className='text-3xl font-bold tracking-tight text-[#212121] sm:text-4xl md:hidden lg:hidden'
-                data-aos='fade-up'
-              >
-                Articles récents
-              </h2>
+          {/* Articles section */}
+          <div className='blog mx-auto mx-auto max-w-7xl px-6 lg:px-8 mb-36'>
+            <div className="mx-auto max-w-2xl lg:max-w-4xl">
+              <h2 className="mb-5 text-4xl font-bold tracking-tight text-[#212121] sm:text-6xl">Articles
+                récents</h2>
             </div>
-            <div className="flex justify-end projects-navigation mx-auto max-w-2xl lg:max-w-4xl">
-              <ArrowLongLeftIcon
-                  className='mr-3 h-5 w-5 hover:text-[#1463FF] slide-to-right-blog buttonzsn'
-                  aria-hidden='true'
-              />
-              <ArrowLongRightIcon
-                  className='ml-3 h-5 w-5 hover:text-[#1463FF] slide-to-left-blog buttonzsn'
-                  aria-hidden='true'
-              />
+            <div
+                className="mx-auto max-w-2xl lg:max-w-4xl grid grid-cols-1 gap-x-8 gap-y-12 sm:gap-y-16 lg:grid-cols-2">
+              {articles.map((article) => (
+                  <article key={articles[0].id} className="mx-auto w-full max-w-2xl lg:mx-0 lg:max-w-lg">
+                    <Image
+                        src={`https://julien-api.byus.dev/static/blog/${article.id}/${article.image}`}
+                        width={500}
+                        height={500}
+                        alt="illustration article"
+                        className="aspect-[7/5] w-full max-w-none flex-none rounded-2xl bg-gray-50 object-cover"/>
+                    <time dateTime={article.published_at}
+                          className="block text-sm leading-6 text-gray-600 mt-2">
+                      {article.published_at}
+                    </time>
+                    {article.title.length > 33 ? (
+                        <h2 id="featured-post"
+                            className="mt-4 text-xl font-bold tracking-tight text-gray-900 md:text-3xl">
+                          {`${article.title.slice(0, 33)}...`}
+                        </h2>
+                    ) : (
+                        <h2 id="featured-post"
+                            className="mt-4 text-xl font-bold tracking-tight text-gray-900 md:text-3xl">
+                          {article.title}
+                        </h2>
+                    )}
+                    <p className="mt-4 text-xs leading-4 text-gray-500 md:text-sm md:leading-6">{article.description}</p>
+                    <div className="relative mt-4 flex items-center gap-x-4">
+                         <span
+                             className="inline-flex items-center gap-x-1.5 rounded-lg px-2 py-1 text-xs font-medium text-[#0E0B3D] ring-1 ring-inset ring-[#0E0B3D]">
+                          Web
+                        </span>
+                      <span
+                          className="inline-flex items-center gap-x-1.5 rounded-lg px-2 py-1 text-xs font-medium text-[#0E0B3D] ring-1 ring-inset ring-[#0E0B3D]">
+                          Digital
+                        </span>
+                    </div>
+                    <div
+                        className="mt-4 flex flex-col justify-between gap-6 sm:mt-8 sm:flex-row-reverse sm:gap-8 lg:mt-4 lg:flex-col">
+                      <div className="flex">
+                        <a
+                            href={`/article/${article.slug}`}
+                            className="text-sm font-semibold leading-6 text-indigo-600"
+                            aria-describedby="featured-post"
+                        >
+                          Consulter <span aria-hidden="true">&rarr;</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+              ))}
             </div>
           </div>
 
-          {/* Blog section */}
-          <div className='articlez parent sm:my-13 lg:my-13 relative mt-3 mb-52 inline-flex'>
-            {articles.slice(0, 3).map((article) => (
-                <div
-                    key={articles[0].id}
-                    className='child child-project z-20 inline-table w-screen px-6 text-[#212121]'
-                >
-                  <div className='mx-auto max-w-2xl lg:max-w-4xl'>
-                    <figure className='mt-6 md:mt-16'>
-                      {article.title.length > 33 ? (
-                          <h4 className='mb-2 mb-0 text-xl font-bold tracking-tight text-[#212121] md:text-3xl'>
-                            {`${article.title.slice(0, 33)}...`}
-                          </h4>
-                      ) : (
-                          <h4 className='mb-2 mb-0 text-xl font-bold tracking-tight text-[#212121] md:text-3xl'>
-                            {article.title}
-                          </h4>
-                      )}
-                      <div className='grid grid-flow-col grid-rows-1 gap-1'>
-                        <figcaption className='mb-4 flex gap-x-2 text-xs leading-4 text-gray-500 md:text-sm md:leading-6'>
-                          {article.description}
-                        </figcaption>
-                      </div>
-                      <Link target="_blank" title={article.title} href={`https://blog.julienestanis.fr/article/${article.slug}`}>
-                        <Image
-                            className='aspect-video rounded-xl bg-gray-50 object-cover'
-                            src={`https://julien-api.byus.dev/static/blog/${article.id}/${article.image}`}
-                            alt=''
-                            width={2432}
-                            height={600}
-                            blurDataURL="data:..."
-                            placeholder="blur"
-                        />
-                      </Link>
-                    </figure>
-                  </div>
-                </div>
-            ))}
-          </div>
         </section>
       </main>
     </Layout>

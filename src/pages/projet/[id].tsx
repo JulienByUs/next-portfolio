@@ -243,6 +243,8 @@ export default function SingleProjet() {
                         alt='logo'
                         width={150}
                         height={150}
+                        blurDataURL="data:..."
+                        placeholder="blur"
                       />
                     </div>
                   </div>
@@ -252,7 +254,9 @@ export default function SingleProjet() {
                   src={`https://julien-api.byus.dev/static/projects/${project.id}/${project.heroUrl}`}
                 alt='App screenshot'
                 width={2432}
-                height={1100}
+                height={2100}
+                blurDataURL="data:..."
+                placeholder="blur"
                 className='my-20 md:my-44 hero-img'
               />
               <div className='layout px-6 lg:px-8'>
@@ -280,6 +284,8 @@ export default function SingleProjet() {
                       alt='App screenshot'
                       width={2432}
                       height={600}
+                      blurDataURL="data:..."
+                      placeholder="blur"
                       className='project-img-close ring-1 ring-gray-900/10'
                     />
                   </div>
