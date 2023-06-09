@@ -329,20 +329,20 @@ export default function HomePage() {
             <div className='py-12 sm:py-20'>
               <div className='mx-auto max-w-7xl lg:px-8'>
                 <div className='mx-auto max-w-2xl text-center lg:max-w-4xl'>
-                  <p className='catchphrase overflow-hidden text-sm leading-10 text-gray-600'>
+                  <span className='catchphrase overflow-hidden text-sm leading-10 text-gray-600'>
                     <div className='overflow-hidden pb-2'>
                       <div className='leading-6'>
                         Avec mon aide, vos idées prendront vie et se
                         concrétiseront en des projets réels et fonctionnels.
                       </div>
                     </div>
-                  </p>
+                  </span>
                   <h1 className='title-main overflow-hidden font-bold leading-10 tracking-tight text-[#212121] sm:text-6xl mt-6'>
                     <div className='overflow-hidden pb-2 text-[#0E0B3D] text-[38px] text-md-[54px] leading-[45px] leading-md-[64px]'>
                       Obtenez un site internet <span className="sub-lighted text-[38px] text-md-[54px]">professionnel</span> et <span className="sub-lighted-bis text-[38px] text-md-[54px]">performant</span>
                     </div>
                   </h1>
-                  <p className='description-main text-md mt-6 overflow-hidden leading-6 text-gray-600'>
+                  <div className='description-main text-md mt-6 overflow-hidden leading-6 text-gray-600'>
                     <div className='pb-2'>
                       <div>
                         Je suis un webdesigner/développeur basé à Paris. Grâce à mon expertise,
@@ -350,7 +350,7 @@ export default function HomePage() {
                         sites web créatifs et performants.
                       </div>
                     </div>
-                  </p>
+                  </div>
                   <ChakraProvider>
                   <Tabs variant='soft-rounded' colorScheme='green'>
                     <TabList>
