@@ -4,7 +4,7 @@ import ResizeObserver from "resize-observer-polyfill";
 import {gsap} from "gsap";
 
 export default class SmoothScroll extends React.Component {
-    constructor(props) {
+    constructor(props: never) {
         super(props);
         this.state = {
             height: 0
@@ -16,7 +16,6 @@ export default class SmoothScroll extends React.Component {
     ro = new ResizeObserver(elements => {
         for (const elem of elements) {
             const crx = elem.contentRect;
-            console.log(crx);
             this.setState({
                 height: crx.height
             });
