@@ -325,7 +325,7 @@ export default function HomePage() {
 
       <main>
         <section className='bg-white'>
-          <div className='layout relative flex min-h-screen flex-col py-12 text-center'>
+          <div className='layout relative flex flex-col pt-12 text-center'>
             <div className='py-12 sm:py-20'>
               <div className='mx-auto max-w-7xl lg:px-8'>
                 <div className='mx-auto max-w-2xl text-center lg:max-w-4xl'>
@@ -517,13 +517,13 @@ export default function HomePage() {
                     <div
                         className="mt-4 flex flex-col justify-between gap-6 sm:mt-8 sm:flex-row-reverse sm:gap-8 lg:mt-4 lg:flex-col">
                       <div className="flex">
-                        <a
-                            href={`/article/${article.slug}`}
+                        <Link
+                            href={`https://blog.julienestanis.fr/article/${article.slug}`}
                             className="text-sm font-semibold leading-6 text-indigo-600"
                             aria-describedby="featured-post"
                         >
                           Consulter <span aria-hidden="true">&rarr;</span>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </article>
