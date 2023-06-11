@@ -3,8 +3,20 @@ import React from "react";
 import ResizeObserver from "resize-observer-polyfill";
 import {gsap} from "gsap";
 
-export default class SmoothScroll extends React.Component {
-    constructor(props: never) {
+interface SmoothScrollProps {
+    children: React.ReactNode; // Update the type of children prop based on your needs
+}
+
+interface SmoothScrollState {
+    height: number;
+}
+
+export default class SmoothScroll extends  React.Component<SmoothScrollProps, SmoothScrollState> {
+    private readonly viewport: React.RefObject<any>; // Adjust the type based on your needs
+    private readonly fake: React.RefObject<any>; // Adjust the type based on your needs
+
+
+    constructor(props: any) {
         super(props);
         this.state = {
             height: 0
