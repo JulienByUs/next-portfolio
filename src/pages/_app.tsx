@@ -25,27 +25,23 @@ function MyApp({ Component, pageProps }: AppProps) {
         const cursorinner = document.querySelector('.cursor2');
         const a = document.querySelectorAll('a');
 
-        document.addEventListener('mousemove', function(e){
-            let x = e.clientX;
-            let y = e.clientY;
+        document.addEventListener('mousemove', function(e) {
             cursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`
         });
 
-        document.addEventListener('mousemove', function(e){
-            let x = e.clientX;
-            let y = e.clientY;
-            cursorinner.style.left = x + 'px';
-            cursorinner.style.top = y + 'px';
+        document.addEventListener('mousemove', function(e) {
+            cursorinner.style.left = e.clientX + 'px';
+            cursorinner.style.top = e.clientY + 'px';
         });
 
-        document.addEventListener('mousedown', function(){
+        document.addEventListener('mousedown', function() {
             cursor.classList.add('click');
-            cursorinner.classList.add('cursorinnerhover')
+            cursorinner.classList.add('cursorinnerhover');
         });
 
-        document.addEventListener('mouseup', function(){
-            cursor.classList.remove('click')
-            cursorinner.classList.remove('cursorinnerhover')
+        document.addEventListener('mouseup', function() {
+            cursor.classList.remove('click');
+            cursorinner.classList.remove('cursorinnerhover');
         });
 
         a.forEach(item => {
@@ -55,7 +51,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             item.addEventListener('mouseleave', () => {
                 cursor.classList.remove('hover');
             });
-        })
+        });
 
     }, []);
 
