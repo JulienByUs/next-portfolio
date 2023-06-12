@@ -52,10 +52,19 @@ export default class SmoothScroll extends  React.Component<SmoothScrollProps, Sm
     }
 
     onScroll = () => {
-        gsap.to(this.viewport.current, 2, {
-            y: -window.pageYOffset,
-            ease: Power4.easeOut
-        });
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            gsap.to(this.viewport.current, 1, {
+                y: -window.pageYOffset,
+                ease: Power4.easeOut
+            });
+        }
+        else {
+            gsap.to(this.viewport.current, 2, {
+                y: -window.pageYOffset,
+                ease: Power4.easeOut
+            });
+        }
+
     };
 
     render() {

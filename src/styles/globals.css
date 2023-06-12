@@ -415,3 +415,10 @@ button:hover{
   overflow-x: hidden;
   position: fixed;
 }
+
+@media (max-width: 768px){
+  .cursor,
+  .cursor2{
+    display: none;
+  }
+}
